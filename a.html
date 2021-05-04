@@ -77,25 +77,7 @@
             // if row is even and 'time' or 'total' column have rowspan 2
             if(i%2==0 && (column==totalColumn || column == timeColumn)){
               if (data.Vf[i].c[column]) {
-                if (data.Vf[i].c[column].f) {
-                  
-                  // add style to the cell
-                  if(column == scoreColumn){
-                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`; 
-                  }
-                  else if(column == winChanceColumn){
-                    tableBody += 
-                    `<td rowspan="2" class="winChance">
-                    ${data.Vf[i].c[column].f}
-                    </td>`; 
-                  }
-                  else{
-                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`; 
-                  }
-
-                }
-                else{
-                  if(column == scoreColumn){
+                if(column == scoreColumn){
                     tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`; 
                   }
                   else if(column == winChanceColumn){
@@ -104,7 +86,6 @@
                   else{
                     tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`; 
                   }
-                }
               }
               else{
                 tableBody += `<td></td>`;
@@ -113,31 +94,7 @@
             else {
               // if cell is not null
               if (data.Vf[i].c[column]) {
-                if (data.Vf[i].c[column].f) {
-
-                  // add style to the cell
-                  if(column == scoreColumn){
-                    tableBody += 
-                    `<td>
-                      <span class="score">
-                        ${data.Vf[i].c[column].f}
-                      </span>
-                    </td>`;  
-                  }
-                  else if(column == winChanceColumn){
-                    tableBody += 
-                    `<td>
-                      <span class="winChance">
-                        ${data.Vf[i].c[column].f}
-                      </span>
-                    </td>`;  
-                  }
-                  else{
-                    tableBody += `<td>${data.Vf[i].c[column].f}</td>`;  
-                  }
-                }
-                else{
-                  if(column == scoreColumn){
+                if(column == scoreColumn){
                     tableBody += 
                     `<td>
                     <span class="score">
@@ -159,7 +116,6 @@
                   else{
                     tableBody += `<td>${data.Vf[i].c[column].v}</td>`;  
                   }
-                }
               }
               else if (column!=totalColumn && column != timeColumn) {
                 tableBody += `<td></td>`;
