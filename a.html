@@ -85,8 +85,26 @@
                           if (column == scoreColumn) {
                               tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`;
                           } else if (column == winChanceColumn) {
+                            let backgroundColor = "";
+                            const colorMap = [
+                              { color: "#d9ead3", min: 0, max: 0.9999 },
+                              { color: "#b6d7a8", min: 1.0, max: 1.9999 },
+                              { color: "#a2cf8d", min: 2.0, max: 2.9999 },
+                              { color: "#97c880", min: 3.0, max: 3.9999 },
+                              { color: "#5b9a40", min: 4.0, max: 4.9999 },
+                              { color: "#6aa84f", min: 5.0, max: 5.9999 },
+                              { color: "#5a9940", min: 6.0, max: 6.9999 },
+                              { color: "#37751d", min: 7.0, max: 7.9999 },
+                              { color: "#274e13", min: 8.0, max: 1 },
+                            ];
+                            var result = colorMap.filter(function(item) {
+                              return item.min <= value && item.max >= value;
+                            });
+                            if (result.length > 0) {
+                              backgroundColor = ""; result[0].color;
+                            }
                               tableBody +=
-                                  `<td rowspan="2" class="winChance">${data.Vf[i].c[column].f}</td>`;
+                                  `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].f}</td>`;
                           } else {
                               tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`;
                           }
@@ -116,9 +134,28 @@
                                     </span>
                                   </td>`;
                           } else if (column == winChanceColumn) {
+                            let backgroundColor = "";
+                            const colorMap = [
+                              { color: "#d9ead3", min: 0, max: 0.9999 },
+                              { color: "#b6d7a8", min: 1.0, max: 1.9999 },
+                              { color: "#a2cf8d", min: 2.0, max: 2.9999 },
+                              { color: "#97c880", min: 3.0, max: 3.9999 },
+                              { color: "#5b9a40", min: 4.0, max: 4.9999 },
+                              { color: "#6aa84f", min: 5.0, max: 5.9999 },
+                              { color: "#5a9940", min: 6.0, max: 6.9999 },
+                              { color: "#37751d", min: 7.0, max: 7.9999 },
+                              { color: "#274e13", min: 8.0, max: 1 },
+                            ];
+                            var result = colorMap.filter(function(item) {
+                              return item.min <= value && item.max >= value;
+                            });
+                            if (result.length > 0) {
+                              backgroundColor = ""; result[0].color;
+                            }
+
                               tableBody +=
                                   `<td>
-                                    <span class="winChance">
+                                    <span class="winChance" style="background-color:${backgroundColor}">
                                       ${data.Vf[i].c[column].f}
                                     </span>
                                   </td>`;
@@ -304,8 +341,20 @@
     border-bottom: 1px solid #fff;
   }
 </style>
+</head>
 
-<script type="text/javascript">
+<body>
+  <div>
+    <div id="table">
+    </div>
+    <table id="web-projections" class="centered">
+    </table>
+
+    <table id="mobile-projections" class="centered">
+    </table>
+  </div>
+
+  <script type="text/javascript">
     // const colorMap = [
     //     { color: "#d9ead3", min: 0, max: 0.9999 },
     //     { color: "#b6d7a8", min: 0.1, max: 0.19999 },
@@ -347,17 +396,5 @@
       $(this).css("background-color", findColor(value));
     });
   </script>
-</head>
-
-<body>
-  <div>
-    <div id="table">
-    </div>
-    <table id="web-projections" class="centered">
-    </table>
-
-    <table id="mobile-projections" class="centered">
-    </table>
-  </div>
 </body>
 </html>
