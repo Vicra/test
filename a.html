@@ -96,11 +96,12 @@
                               tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`;
                           } else if (column == winChanceColumn) {
                             let backgroundColor = "";
-                            var result = colorMap.filter(function(item) {
-                              return item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v;
-                            });
-                            if (result.length > 0) {
-                              backgroundColor = ""; result[0].color;
+
+                            for (let i = 0; i < colorMap.length; i++) {
+                              const item = colorMap[i];
+                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                backgroundColor = item.color;
+                              }
                             }
                               tableBody +=
                                   `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].f}</td>`;
@@ -134,11 +135,12 @@
                                   </td>`;
                           } else if (column == winChanceColumn) {
                             let backgroundColor = "";
-                            var result = colorMap.filter(function(item) {
-                              return item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v;
-                            });
-                            if (result.length > 0) {
-                              backgroundColor = ""; result[0].color;
+
+                            for (let i = 0; i < colorMap.length; i++) {
+                              const item = colorMap[i];
+                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                backgroundColor = item.color;
+                              }
                             }
 
                               tableBody +=
