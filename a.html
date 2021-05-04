@@ -15,14 +15,14 @@
     let visualization;
     const colorMap = [
       { color: "#d9ead3", min: 0, max: 0.09999 },
-      { color: "#b6d7a8", min: 0.10, max: 0.19999 },
-      { color: "#a2cf8d", min: 0.20, max: 0.29999 },
-      { color: "#97c880", min: 0.30, max: 0.39999 },
-      { color: "#5b9a40", min: 0.40, max: 0.49999 },
-      { color: "#6aa84f", min: 0.50, max: 0.59999 },
-      { color: "#5a9940", min: 0.60, max: 0.69999 },
-      { color: "#37751d", min: 0.70, max: 0.79999 },
-      { color: "#274e13", min: 0.80, max: 1 },
+      { color: "#b6d7a8", min: 0.1, max: 0.19999 },
+      { color: "#a2cf8d", min: 0.2, max: 0.29999 },
+      { color: "#97c880", min: 0.3, max: 0.39999 },
+      { color: "#5b9a40", min: 0.4, max: 0.49999 },
+      { color: "#6aa84f", min: 0.5, max: 0.59999 },
+      { color: "#5a9940", min: 0.6, max: 0.69999 },
+      { color: "#37751d", min: 0.7, max: 0.79999 },
+      { color: "#274e13", min: 0.8, max: 1 },
     ];
     function drawVisualization() {
         //desktop
@@ -97,12 +97,12 @@
                           } else if (column == winChanceColumn) {
                             let backgroundColor = "";
 
-                            for (let i = 0; i < colorMap.length; i++) {
-                              const item = colorMap[i];
-                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                            for (let j = 0; j < colorMap.length; j++) {
+                              const item = colorMap[j];
+                              if (item.min <= data.Vf[j].c[column].v && item.max >= data.Vf[j].c[column].v) {
                                 console.log("item.min", item.min);
                                 console.log("item.max", item.max);
-                                console.log("v", data.Vf[i].c[column].v);
+                                console.log("v", data.Vf[j].c[column].v);
                                 backgroundColor = item.color;
                                 break;
                               }
@@ -140,12 +140,12 @@
                           } else if (column == winChanceColumn) {
                             let backgroundColor = "";
 
-                            for (let i = 0; i < colorMap.length; i++) {
-                              const item = colorMap[i];
-                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                            for (let j = 0; j < colorMap.length; j++) {
+                              const item = colorMap[j];
+                              if (item.min <= data.Vf[j].c[column].v && item.max >= data.Vf[j].c[column].v) {
                                 console.log("item.min", item.min);
                                 console.log("item.max", item.max);
-                                console.log("v", data.Vf[i].c[column].v);
+                                console.log("v", data.Vf[j].c[column].v);
                                 backgroundColor = item.color;
                                 break;
                               }
