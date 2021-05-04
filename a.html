@@ -47,7 +47,7 @@
     }
 
     function drawVisualizationMobile() {
-        let queryMobile = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1b-MT71V2ERsb5JW-wqJ1MOYPbSVH_RJH4dmdCr7cvc8/edit?usp=sharing');
+        let queryMobile = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1tgR_TJW00OSYI9Cg7rYZBsLUlenodRXpdz0HBm_kvhE/edit?usp=sharing');
         queryMobile.setQuery(`SELECT A, B, C, D, E, F, G label 
             A "TIME"
             , B ""
@@ -176,8 +176,7 @@
                                     </span>
                                   </td>`;
                           } else if (column == imageColumn) {
-                              // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
-                              tableBody += `<td><img src=""></img></td>`;
+                              tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column+1].v}"></img></td>`;
                           } else {
                               tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
                           }
@@ -225,7 +224,20 @@
                     tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`; 
                   }
                   else if(column == winChanceColumn){
-                    tableBody += `<td rowspan="2" class="winChance">${data.Vf[i].c[column].v}</td>`; 
+                    let backgroundColor = "";
+
+                    for (let j = 0; j < colorMap.length; j++) {
+                      const item = colorMap[j];
+                      if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                        console.log("item.min", item.min);
+                        console.log("item.max", item.max);
+                        console.log("v", data.Vf[i].c[column].v);
+                        backgroundColor = item.color;
+                        break;
+                      }
+                    }
+                    tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}>${data.Vf[i].c[column].v}</td>`; 
+                    
                   }
                   else{
                     tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`; 
@@ -247,9 +259,22 @@
                     </td>`;
                   }
                   else if(column == winChanceColumn){
+                    let backgroundColor = "";
+
+                    for (let j = 0; j < colorMap.length; j++) {
+                      const item = colorMap[j];
+                      if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                        console.log("item.min", item.min);
+                        console.log("item.max", item.max);
+                        console.log("v", data.Vf[i].c[column].v);
+                        backgroundColor = item.color;
+                        break;
+                      }
+                    }
+
                     tableBody += 
                     `<td>
-                      <span class="winChance">
+                      <span class="winChance" style="background-color:${backgroundColor}>
                         ${data.Vf[i].c[column].v}
                       </span>
                     </td>`;  
@@ -272,7 +297,7 @@
         $('#mobile-projections').append(tableBody);
     }
     google.setOnLoadCallback(drawVisualization);
-    // google.setOnLoadCallback(drawVisualizationMobile);
+    google.setOnLoadCallback(drawVisualizationMobile);
 </script>
 
 <style type="text/css">
