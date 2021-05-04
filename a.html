@@ -376,7 +376,7 @@
     //     { color: "#274e13", min: 0.8, max: 1 },
     //   ];
     const colorMap = [
-        { color: "#d9ead3", min: 0, max: 09999 },
+        { color: "#d9ead3", min: 0, max: 9.999 },
         { color: "#b6d7a8", min: 10, max: 19.999 },
         { color: "#a2cf8d", min: 20, max: 29.999 },
         { color: "#97c880", min: 30, max: 39.999 },
@@ -398,7 +398,7 @@
       return "transparent";
     }
   
-    $("tbody td span").each(function() {
+    $(".winChance").each(function() {
   
       // read numeric value
       var value = parseInt($(this).text(),10);
