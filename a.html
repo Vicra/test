@@ -99,10 +99,10 @@
 
                             for (let j = 0; j < colorMap.length; j++) {
                               const item = colorMap[j];
-                              if (item.min <= data.Vf[j].c[column].v && item.max >= data.Vf[j].c[column].v) {
+                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
                                 console.log("item.min", item.min);
                                 console.log("item.max", item.max);
-                                console.log("v", data.Vf[j].c[column].v);
+                                console.log("v", data.Vf[i].c[column].v);
                                 backgroundColor = item.color;
                                 break;
                               }
@@ -142,10 +142,10 @@
 
                             for (let j = 0; j < colorMap.length; j++) {
                               const item = colorMap[j];
-                              if (item.min <= data.Vf[j].c[column].v && item.max >= data.Vf[j].c[column].v) {
+                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
                                 console.log("item.min", item.min);
                                 console.log("item.max", item.max);
-                                console.log("v", data.Vf[j].c[column].v);
+                                console.log("v", data.Vf[i].c[column].v);
                                 backgroundColor = item.color;
                                 break;
                               }
