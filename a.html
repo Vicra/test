@@ -136,20 +136,17 @@
                           } else if (column == winChanceColumn) {
                             let backgroundColor = "";
                             const colorMap = [
-                              { color: "#d9ead3", min: 0, max: 0.9999 },
-                              { color: "#b6d7a8", min: 1.0, max: 1.9999 },
-                              { color: "#a2cf8d", min: 2.0, max: 2.9999 },
-                              { color: "#97c880", min: 3.0, max: 3.9999 },
-                              { color: "#5b9a40", min: 4.0, max: 4.9999 },
-                              { color: "#6aa84f", min: 5.0, max: 5.9999 },
-                              { color: "#5a9940", min: 6.0, max: 6.9999 },
-                              { color: "#37751d", min: 7.0, max: 7.9999 },
-                              { color: "#274e13", min: 8.0, max: 1 },
+                              { color: "#d9ead3", min: 0, max: 0.09999 },
+                              { color: "#b6d7a8", min: 0.10, max: 0.19999 },
+                              { color: "#a2cf8d", min: 0.20, max: 0.29999 },
+                              { color: "#97c880", min: 0.30, max: 0.39999 },
+                              { color: "#5b9a40", min: 0.40, max: 0.49999 },
+                              { color: "#6aa84f", min: 0.50, max: 0.59999 },
+                              { color: "#5a9940", min: 0.60, max: 0.69999 },
+                              { color: "#37751d", min: 0.70, max: 0.79999 },
+                              { color: "#274e13", min: 0.80, max: 1 },
                             ];
                             var result = colorMap.filter(function(item) {
-                              console.log("item.min",item.min);
-                              console.log("item.max",item.max);
-                              console.log("v",data.Vf[i].c[column].v);
                               return item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v;
                             });
                             if (result.length > 0) {
