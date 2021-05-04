@@ -21,7 +21,7 @@
         // https://docs.google.com/spreadsheets/d/1KLwb5dmAoeZ5bprEfPb16JRztuPOLF--bty4sB2zTyU/edit?usp=sharing
 
         // https://docs.google.com/spreadsheets/d/1sd4Qn137U9uZ1qibwaFrZYwEpFDADVRt_ruNUfUhN_k/edit?usp=sharing
-        let query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1sd4Qn137U9uZ1qibwaFrZYwEpFDADVRt_ruNUfUhN_k/edit?usp=sharing');
+        let query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1hx2EmIfnllcPFqGu8YOENg3tcQwkzffkvY7Ksy9tLJE/edit?usp=sharing');
         query.setQuery(`SELECT A, B, C, D, E, F, G, H label 
             A "TIME"
             , B " "
@@ -209,7 +209,7 @@
         $('#mobile-projections').append(tableBody);
     }
     google.setOnLoadCallback(drawVisualization);
-    google.setOnLoadCallback(drawVisualizationMobile);
+    // google.setOnLoadCallback(drawVisualizationMobile);
 </script>
 
 <style type="text/css">
