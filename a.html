@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    google.charts.load('current', {packages: ['table']});
+    let visualization;
+
+    function drawVisualization() {
+        //desktop
+        let query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1sd4Qn137U9uZ1qibwaFrZYwEpFDADVRt_ruNUfUhN_k/edit?usp=sharing');
+        query.setQuery(`SELECT A, B, C, D, E, F, G, H, I label 
+            A "TIME"
+            , B " "
+            , C "TEAM"
+            , D "PITCHER"
+            , E "SCORE"
+            , F "WIN CHANCE"
+            , G "TOTAL"
+            , H "SPREAD"
+            , I "ML"
+            `);
+        query.send(handleQueryResponse);
+    }
+
+    function drawVisualizationMobile() {
+        let queryMobile = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1b-MT71V2ERsb5JW-wqJ1MOYPbSVH_RJH4dmdCr7cvc8/edit?usp=sharing');
+        queryMobile.setQuery(`SELECT A, B, C, D, E, F, G label 
+            A "TIME"
+            , B ""
+            , C "TEAM"
+            , D "PITCHER"
+            , E "SCORE"
+            , F "WIN CHANCE"
+            , G "ML"
+            `);
+        queryMobile.send(handleQueryResponseMobile);
+    }
+
+    function handleQueryResponse(response) {
+        if (response.isError()) {
+            alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+        }
+        let data = response.getDataTable();
+        let timeColumn = 0;
+        let imageColumn = 1;
+        let scoreColumn = 4;
+        let winChanceColumn = 5;
+        let totalColumn = 6;
+        // populate column head
+        let htmlHeaders = '<thead><tr>';
+        for (let i = 0; i < data.cf.length; i++) {
+          htmlHeaders += `<th>${data.cf[i].label}</th>`;
+        }
+        htmlHeaders += '</tr></thead>'
+        $('#web-projections').append(htmlHeaders);
+
+        // populate the data
+        let tableBody = '<tbody><tr>';
+        for (let i = 0; i < data.Vf.length; i++) {
+          tableBody += '<tr>';
+          for (let column = 0; column < data.Vf[i].c.length; column++) {
+
+            // if row is even and 'time' or 'total' column have rowspan 2
+            if(i%2==0 && (column==totalColumn || column == timeColumn)){
+              if (data.Vf[i].c[column]) {
+                if (data.Vf[i].c[column].f) {
+                  
+                  // add style to the cell
+                  if(column == scoreColumn){
+                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`; 
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += 
+                    `<td rowspan="2" class="winChance">
+                    ${data.Vf[i].c[column].f}
+                    </td>`; 
+                  }
+                  else{
+                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`; 
+                  }
+
+                }
+                else{
+                  if(column == scoreColumn){
+                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`; 
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += `<td rowspan="2" class="winChance">${data.Vf[i].c[column].v}</td>`; 
+                  }
+                  else{
+                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`; 
+                  }
+                }
+              }
+              else{
+                tableBody += `<td></td>`;
+              }
+            }
+            else {
+              // if cell is not null
+              if (data.Vf[i].c[column]) {
+                if (data.Vf[i].c[column].f) {
+
+                  // add style to the cell
+                  if(column == scoreColumn){
+                    tableBody += 
+                    `<td>
+                      <span class="score">
+                        ${data.Vf[i].c[column].f}
+                      </span>
+                    </td>`;  
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += 
+                    `<td>
+                      <span class="winChance">
+                        ${data.Vf[i].c[column].f}
+                      </span>
+                    </td>`;  
+                  }
+                  else{
+                    tableBody += `<td>${data.Vf[i].c[column].f}</td>`;  
+                  }
+                }
+                else{
+                  if(column == scoreColumn){
+                    tableBody += 
+                    `<td>
+                    <span class="score">
+                      ${data.Vf[i].c[column].v}
+                    </span>
+                    </td>`;
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += 
+                    `<td>
+                      <span class="winChance">
+                        ${data.Vf[i].c[column].v}
+                      </span>
+                    </td>`;  
+                  }
+                  else if(column == imageColumn){
+                    tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
+                  }
+                  else{
+                    tableBody += `<td>${data.Vf[i].c[column].v}</td>`;  
+                  }
+                }
+              }
+              else if (column!=totalColumn && column != timeColumn) {
+                tableBody += `<td></td>`;
+              }
+            }
+          }
+          tableBody += '</tr>'
+        }
+        tableBody += '</tbody>'
+        $('#web-projections').append(tableBody);
+    }
+
+    function handleQueryResponseMobile(response){
+      if (response.isError()) {
+            alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+        }
+        let data = response.getDataTable();
+        let timeColumn = 0;
+        let imageColumn = 1;
+        let scoreColumn = 4;
+        let winChanceColumn = 5;
+        // populate column head
+        let htmlHeaders = '<thead><tr>';
+        for (let i = 0; i < data.cf.length; i++) {
+          htmlHeaders += `<th>${data.cf[i].label}</th>`;
+        }
+        htmlHeaders += '</tr></thead>'
+        $('#mobile-projections').append(htmlHeaders);
+
+        // populate the data
+        let tableBody = '<tbody><tr>';
+        for (let i = 0; i < data.Vf.length; i++) {
+          tableBody += '<tr>';
+          for (let column = 0; column < data.Vf[i].c.length; column++) {
+
+            // if row is even and 'time' or 'total' column have rowspan 2
+            if(i%2==0 && (column == timeColumn)){
+              if (data.Vf[i].c[column]) {
+                if (data.Vf[i].c[column].f) {
+                  
+                  // add style to the cell
+                  if(column == scoreColumn){
+                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`; 
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += 
+                    `<td rowspan="2" class="winChance">
+                    ${data.Vf[i].c[column].f}
+                    </td>`; 
+                  }
+                  else{
+                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`; 
+                  }
+
+                }
+                else{
+                  if(column == scoreColumn){
+                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`; 
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += `<td rowspan="2" class="winChance">${data.Vf[i].c[column].v}</td>`; 
+                  }
+                  else{
+                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`; 
+                  }
+                }
+              }
+              else{
+                tableBody += `<td></td>`;
+              }
+            }
+            else {
+              // if cell is not null
+              if (data.Vf[i].c[column]) {
+                if (data.Vf[i].c[column].f) {
+
+                  // add style to the cell
+                  if(column == scoreColumn){
+                    tableBody += 
+                    `<td>
+                      <span class="score">
+                        ${data.Vf[i].c[column].f}
+                      </span>
+                    </td>`;  
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += 
+                    `<td>
+                      <span class="winChance">
+                        ${data.Vf[i].c[column].f}
+                      </span>
+                    </td>`;  
+                  }
+                  else{
+                    tableBody += `<td>${data.Vf[i].c[column].f}</td>`;  
+                  }
+                }
+                else{
+                  if(column == scoreColumn){
+                    tableBody += 
+                    `<td>
+                    <span class="score">
+                      ${data.Vf[i].c[column].v}
+                    </span>
+                    </td>`;
+                  }
+                  else if(column == winChanceColumn){
+                    tableBody += 
+                    `<td>
+                      <span class="winChance">
+                        ${data.Vf[i].c[column].v}
+                      </span>
+                    </td>`;  
+                  }
+                  else if(column == imageColumn){
+                    tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
+                  }
+                  else{
+                    tableBody += `<td>${data.Vf[i].c[column].v}</td>`;  
+                  }
+                }
+              }
+              else if (column != timeColumn) {
+                tableBody += `<td></td>`;
+              }
+            }
+          }
+          tableBody += '</tr>'
+        }
+        tableBody += '</tbody>'
+        $('#mobile-projections').append(tableBody);
+    }
+    google.setOnLoadCallback(drawVisualization);
+    google.setOnLoadCallback(drawVisualizationMobile);
+</script>
+
+<style type="text/css">
+  img {
+    width: 20px;
+  }
+  
+  @media screen and (min-width: 0px) and (max-width: 400px) {
+    #mobile-projections{ display: table; }  /* show it on smaller screen */
+    #web-projections{ display: none; }   /* hide it on larger screens */
+  }
+  @media screen and (min-width: 401px) and (max-width: 5000px) {
+    #web-projections{ display: table; }   /* hide it on larger screens */
+    #mobile-projections{ display: none; }  /* show it on smaller screen */
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 400px){
+    table {
+      font-size: 10px;
+    }
+  }
+
+  @media screen and (min-width: 401px) and (max-width: 500px){
+    table {
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 800px){
+    table {
+      font-size: 14px;
+    }
+    img {
+      width: 25px;
+    }
+  }
+
+  @media screen and (min-width: 801px) and (max-width: 5000px){
+    table {
+      font-size: 14px;
+    }
+    img {
+      width: 30px;
+    }
+  }
+
+  table {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: barlow-medium,barlow,sans-serif;
+  }
+
+  .score {
+    background-color: grey;
+    padding: 5px 15px;
+  }
+
+  .winChance {
+    background-color: green;
+    padding: 5px 15px;
+  }
+
+  tr:nth-child(odd){
+    border-bottom: 1px solid #fff;
+  }
+</style>
+</head>
+
+<body>
+  <div>
+    <div id="table">
+    </div>
+    <table id="web-projections" class="centered">
+    </table>
+
+    <table id="mobile-projections" class="centered">
+    </table>
+  </div>
+</body>
+</html>
