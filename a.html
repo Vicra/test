@@ -22,7 +22,7 @@
 
         // https://docs.google.com/spreadsheets/d/1sd4Qn137U9uZ1qibwaFrZYwEpFDADVRt_ruNUfUhN_k/edit?usp=sharing
         let query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1hx2EmIfnllcPFqGu8YOENg3tcQwkzffkvY7Ksy9tLJE/edit?usp=sharing');
-        query.setQuery(`SELECT A, B, C, D, E, F, G, H label 
+        query.setQuery(`SELECT A, B, C, D, E, F, G, H, I label 
             A "TIME"
             , B " "
             , C "TEAM"
@@ -31,6 +31,7 @@
             , F "WIN CHANCE"
             , G "TOTAL"
             , H "SPREAD"
+            , I "ML"
             `);
         query.send(handleQueryResponse);
     }
@@ -50,84 +51,111 @@
     }
 
     function handleQueryResponse(response) {
-        if (response.isError()) {
-            alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-            return;
-        }
-        let data = response.getDataTable();
-        console.log(data);
-        let timeColumn = 0;
-        let imageColumn = 1;
-        let scoreColumn = 4;
-        let winChanceColumn = 5;
-        let totalColumn = 6;
-        // populate column head
-        let htmlHeaders = '<thead><tr>';
-        for (let i = 0; i < data.cf.length; i++) {
+      if (response.isError()) {
+          alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+          return;
+      }
+      let data = response.getDataTable();
+      console.log(data);
+      let timeColumn = 0;
+      let imageColumn = 1;
+      let scoreColumn = 4;
+      let winChanceColumn = 5;
+      let totalColumn = 6;
+      // populate column head
+      let htmlHeaders = '<thead><tr>';
+      for (let i = 0; i < data.cf.length; i++) {
           htmlHeaders += `<th>${data.cf[i].label}</th>`;
-        }
-        htmlHeaders += '</tr></thead>'
-        $('#web-projections').append(htmlHeaders);
+      }
+      htmlHeaders += '</tr></thead>'
+      $('#web-projections').append(htmlHeaders);
 
-        // populate the data
-        let tableBody = '<tbody><tr>';
-        for (let i = 0; i < data.Vf.length; i++) {
+      // populate the data
+      let tableBody = '<tbody><tr>';
+      for (let i = 0; i < data.Vf.length; i++) {
           tableBody += '<tr>';
           for (let column = 0; column < data.Vf[i].c.length; column++) {
 
-            // if row is even and 'time' or 'total' column have rowspan 2
-            if(i%2==0 && (column==totalColumn || column == timeColumn)){
-              if (data.Vf[i].c[column]) {
-                if(column == scoreColumn){
-                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`; 
+              // if row is even and 'time' or 'total' column have rowspan 2
+              if (i % 2 == 0 && (column == totalColumn || column == timeColumn)) {
+                  if (data.Vf[i].c[column]) {
+                      if (data.Vf[i].c[column].f) {
+
+                          // add style to the cell
+                          if (column == scoreColumn) {
+                              tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`;
+                          } else if (column == winChanceColumn) {
+                              tableBody +=
+                                  `<td rowspan="2" class="winChance">${data.Vf[i].c[column].f}</td>`;
+                          } else {
+                              tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`;
+                          }
+
+                      } else {
+                          if (column == scoreColumn) {
+                              tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`;
+                          } else if (column == winChanceColumn) {
+                              tableBody += `<td rowspan="2" class="winChance">${data.Vf[i].c[column].v}</td>`;
+                          } else {
+                              tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`;
+                          }
+                      }
+                  } else {
+                      tableBody += `<td></td>`;
                   }
-                  else if(column == winChanceColumn){
-                    tableBody += `<td rowspan="2" class="winChance">${data.Vf[i].c[column].v}</td>`; 
-                  }
-                  else{
-                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`; 
+              } else {
+                  // if cell is not null
+                  if (data.Vf[i].c[column]) {
+                      if (data.Vf[i].c[column].f) {
+                          // add style to the cell
+                          if (column == scoreColumn) {
+                              tableBody +=
+                                  `<td>
+                                    <span class="score">
+                                      ${data.Vf[i].c[column].f}
+                                    </span>
+                                  </td>`;
+                          } else if (column == winChanceColumn) {
+                              tableBody +=
+                                  `<td>
+                                    <span class="winChance">
+                                      ${data.Vf[i].c[column].f}
+                                    </span>
+                                  </td>`;
+                          } else {
+                              tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
+                          }
+                      } else {
+                          if (column == scoreColumn) {
+                              tableBody +=
+                                  `<td>
+                                    <span class="score">
+                                      ${data.Vf[i].c[column].v}
+                                    </span>
+                                  </td>`;
+                          } else if (column == winChanceColumn) {
+                              tableBody +=
+                                  `<td>
+                                    <span class="winChance">
+                                      ${data.Vf[i].c[column].v}
+                                    </span>
+                                  </td>`;
+                          } else if (column == imageColumn) {
+                              // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
+                              tableBody += `<td><img src=""></img></td>`;
+                          } else {
+                              tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
+                          }
+                      }
+                  } else if (column != totalColumn && column != timeColumn) {
+                      tableBody += `<td></td>`;
                   }
               }
-              else{
-                tableBody += `<td></td>`;
-              }
-            }
-            else {
-              // if cell is not null
-              if (data.Vf[i].c[column]) {
-                if(column == scoreColumn){
-                    tableBody += 
-                    `<td>
-                    <span class="score">
-                      ${data.Vf[i].c[column].v}
-                    </span>
-                    </td>`;
-                  }
-                  else if(column == winChanceColumn){
-                    tableBody += 
-                    `<td>
-                      <span class="winChance">
-                        ${data.Vf[i].c[column].v}
-                      </span>
-                    </td>`;  
-                  }
-                  else if(column == imageColumn){
-                    // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
-                    tableBody += `<td><img src=""></img></td>`;  
-                  }
-                  else{
-                    tableBody += `<td>${data.Vf[i].c[column].v}</td>`;  
-                  }
-              }
-              else if (column!=totalColumn && column != timeColumn) {
-                tableBody += `<td></td>`;
-              }
-            }
           }
           tableBody += '</tr>'
-        }
-        tableBody += '</tbody>'
-        $('#web-projections').append(tableBody);
+      }
+      tableBody += '</tbody>'
+      $('#web-projections').append(tableBody);
     }
 
     function handleQueryResponseMobile(response){
