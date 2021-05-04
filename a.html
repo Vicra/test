@@ -290,20 +290,32 @@
   }
 
   @media screen and (min-width: 0px) and (max-width: 400px){
-    table {
-      font-size: 10px;
+    table th{
+      font-size: 9px;
+    }
+
+    table td{
+      font-size: 11px;
     }
   }
 
   @media screen and (min-width: 401px) and (max-width: 500px){
-    table {
-      font-size: 12px;
+    table th{
+      font-size: 11px;
+    }
+
+    table td{
+      font-size: 13px;
     }
   }
 
   @media screen and (min-width: 501px) and (max-width: 800px){
-    table {
-      font-size: 14px;
+    table th{
+      font-size: 13px;
+    }
+
+    table td{
+      font-size: 15px;
     }
     img {
       width: 25px;
@@ -311,8 +323,12 @@
   }
 
   @media screen and (min-width: 801px) and (max-width: 5000px){
-    table {
+    table th{
       font-size: 14px;
+    }
+
+    table td{
+      font-size: 16px;
     }
     img {
       width: 30px;
@@ -351,48 +367,5 @@
     <table id="mobile-projections" class="centered">
     </table>
   </div>
-
-  <script type="text/javascript">
-    // const colorMap = [
-    //     { color: "#d9ead3", min: 0, max: 0.9999 },
-    //     { color: "#b6d7a8", min: 0.1, max: 0.19999 },
-    //     { color: "#a2cf8d", min: 0.2, max: 0.29999 },
-    //     { color: "#97c880", min: 0.3, max: 0.39999 },
-    //     { color: "#5b9a40", min: 0.4, max: 0.49999 },
-    //     { color: "#6aa84f", min: 0.5, max: 0.59999 },
-    //     { color: "#5a9940", min: 0.6, max: 0.69999 },
-    //     { color: "#37751d", min: 0.7, max: 0.79999 },
-    //     { color: "#274e13", min: 0.8, max: 1 },
-    //   ];
-    const colorMap = [
-        { color: "#d9ead3", min: 0, max: 9.999 },
-        { color: "#b6d7a8", min: 10, max: 19.999 },
-        { color: "#a2cf8d", min: 20, max: 29.999 },
-        { color: "#97c880", min: 30, max: 39.999 },
-        { color: "#5b9a40", min: 40, max: 49.999 },
-        { color: "#6aa84f", min: 50, max: 59.999 },
-        { color: "#5a9940", min: 60, max: 69.999 },
-        { color: "#37751d", min: 70, max: 79.999 },
-        { color: "#274e13", min: 80, max: 100 },
-      ];
-    function findColor(value) {
-      var result = colorMap.filter(function(item) {
-          console.log("item", item);
-          console.log("value", value);
-        return item.min <= value && item.max >= value;
-      });
-      if (result.length > 0) {
-        return result[0].color;
-      }
-      return "transparent";
-    }
-  
-    $(".winChance").each(function() {
-  
-      // read numeric value
-      var value = parseInt($(this).text(),10);
-      $(this).css("background-color", findColor(value));
-    });
-  </script>
 </body>
 </html>
