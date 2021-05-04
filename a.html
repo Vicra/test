@@ -22,7 +22,7 @@
 
         // https://docs.google.com/spreadsheets/d/1sd4Qn137U9uZ1qibwaFrZYwEpFDADVRt_ruNUfUhN_k/edit?usp=sharing
         let query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1sd4Qn137U9uZ1qibwaFrZYwEpFDADVRt_ruNUfUhN_k/edit?usp=sharing');
-        query.setQuery(`SELECT A, B, C, D, E, F, G, H, I label 
+        query.setQuery(`SELECT A, B, C, D, E, F, G, H
             A "TIME"
             , B " "
             , C "TEAM"
@@ -31,7 +31,6 @@
             , F "WIN CHANCE"
             , G "TOTAL"
             , H "SPREAD"
-            , I "ML"
             `);
         query.send(handleQueryResponse);
     }
