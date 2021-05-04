@@ -390,8 +390,8 @@
     $("tbody td span").each(function() {
   
       // read numeric value
-      var value = parseInt(element.text(),10);
-      element.css("background-color", findColor(value));
+      var value = parseInt($(this).text(),10);
+      $(this).css("background-color", findColor(value));
     });
   </script>
 </head>
