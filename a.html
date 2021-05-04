@@ -147,6 +147,9 @@
                               { color: "#274e13", min: 8.0, max: 1 },
                             ];
                             var result = colorMap.filter(function(item) {
+                              console.log("item.min",item.min);
+                              console.log("item.max",item.max);
+                              console.log("v",data.Vf[i].c[column].v);
                               return item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v;
                             });
                             if (result.length > 0) {
