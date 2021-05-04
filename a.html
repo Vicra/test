@@ -364,8 +364,7 @@
 </style>
 
 <script type="text/javascript">
-    function findColor(value) {
-      var colorMap = [
+    const colorMap = [
         { color: "#d9ead3", min: 0, max: 0.9999 },
         { color: "#b6d7a8", min: 0.1, max: 0.19999 },
         { color: "#a2cf8d", min: 0.2, max: 0.29999 },
@@ -376,6 +375,7 @@
         { color: "#37751d", min: 0.7, max: 0.79999 },
         { color: "#274e13", min: 0.8, max: 1 },
       ];
+    function findColor(value) {
       var result = colorMap.filter(function(item) {
           console.log("item", item);
           console.log("value", value);
