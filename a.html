@@ -362,6 +362,36 @@
     border-bottom: 1px solid #fff;
   }
 </style>
+
+<script type="text/javascript">
+    function findColor(value) {
+      var colorMap = [
+        { color: "#d9ead3", min: 0, max: 0.9999 },
+        { color: "#b6d7a8", min: 0.1, max: 0.19999 },
+        { color: "#a2cf8d", min: 0.2, max: 0.29999 },
+        { color: "#97c880", min: 0.3, max: 0.39999 },
+        { color: "#5b9a40", min: 0.4, max: 0.49999 },
+        { color: "#6aa84f", min: 0.5, max: 0.59999 },
+        { color: "#5a9940", min: 0.6, max: 0.69999 },
+        { color: "#37751d", min: 0.7, max: 0.79999 },
+        { color: "#274e13", min: 0.8, max: 1 },
+      ];
+      var result = colorMap.filter(function(item) {
+        return item.min <= value && item.max >= value;
+      });
+      if (result.length > 0) {
+        return result[0].color;
+      }
+      return "transparent";
+    }
+  
+    $("tbody td span").each(function() {
+  
+      // read numeric value
+      var value = parseInt(element.text(),10);
+      element.css("background-color", findColor(value));
+    });
+  </script>
 </head>
 
 <body>
