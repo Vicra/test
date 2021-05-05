@@ -11,19 +11,49 @@
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-    google.charts.load('current', {packages: ['table']});
+
+        google.charts.load('current', {
+        packages: ['table']
+    });
     let visualization;
-    const colorMap = [
-      { color: "#d9ead3", min: 0, max: 0.09999 },
-      { color: "#b6d7a8", min: 0.1, max: 0.19999 },
-      { color: "#a2cf8d", min: 0.2, max: 0.29999 },
-      { color: "#97c880", min: 0.3, max: 0.39999 },
-      { color: "#5b9a40", min: 0.4, max: 0.49999 },
-      { color: "#6aa84f", min: 0.5, max: 0.59999 },
-      { color: "#5a9940", min: 0.6, max: 0.69999 },
-      { color: "#37751d", min: 0.7, max: 0.79999 },
-      { color: "#274e13", min: 0.8, max: 1 },
-    ];
+    const colorMap = [{
+        color: "#d9ead3",
+        min: 0,
+        max: 0.09999
+    }, {
+        color: "#b6d7a8",
+        min: 0.1,
+        max: 0.19999
+    }, {
+        color: "#a2cf8d",
+        min: 0.2,
+        max: 0.29999
+    }, {
+        color: "#97c880",
+        min: 0.3,
+        max: 0.39999
+    }, {
+        color: "#5b9a40",
+        min: 0.4,
+        max: 0.49999
+    }, {
+        color: "#6aa84f",
+        min: 0.5,
+        max: 0.59999
+    }, {
+        color: "#5a9940",
+        min: 0.6,
+        max: 0.69999
+    }, {
+        color: "#37751d",
+        min: 0.7,
+        max: 0.79999
+    }, {
+        color: "#274e13",
+        min: 0.8,
+        max: 1
+    }, ];
+
     function drawVisualization() {
         //desktop
 
@@ -61,152 +91,152 @@
     }
 
     function handleQueryResponse(response) {
-      if (response.isError()) {
-          alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-          return;
-      }
-      let data = response.getDataTable();
-      let timeColumn = 0;
-      let imageColumn = 1;
-      let scoreColumn = 4;
-      let winChanceColumn = 5;
-      let totalColumn = 6;
-      // populate column head
-      let htmlHeaders = '<thead><tr>';
-      for (let i = 0; i < data.cf.length; i++) {
-          htmlHeaders += `<th>${data.cf[i].label}</th>`;
-      }
-      htmlHeaders += '</tr></thead>'
-      $('#web-projections').append(htmlHeaders);
+        if (response.isError()) {
+            alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+        }
+        let data = response.getDataTable();
+        let timeColumn = 0;
+        let imageColumn = 1;
+        let scoreColumn = 4;
+        let winChanceColumn = 5;
+        let totalColumn = 6;
+        // populate column head
+        let htmlHeaders = '<thead><tr>';
+        for (let i = 0; i < data.cf.length; i++) {
+            htmlHeaders += `<th>${data.cf[i].label}</th>`;
+        }
+        htmlHeaders += '</tr></thead>'
+        $('#web-projections').append(htmlHeaders);
 
-      // populate the data
-      let tableBody = '<tbody><tr>';
-      for (let i = 0; i < data.Vf.length; i++) {
-          tableBody += '<tr>';
-          for (let column = 0; column < data.Vf[i].c.length; column++) {
+        // populate the data
+        let tableBody = '<tbody><tr>';
+        for (let i = 0; i < data.Vf.length; i++) {
+            tableBody += '<tr>';
+            for (let column = 0; column < data.Vf[i].c.length; column++) {
 
-              // if row is even and 'time' or 'total' column have rowspan 2
-              if (i % 2 == 0 && (column == totalColumn || column == timeColumn)) {
-                  if (data.Vf[i].c[column]) {
-                      if (data.Vf[i].c[column].f) {
+                // if row is even and 'time' or 'total' column have rowspan 2
+                if (i % 2 == 0 && (column == totalColumn || column == timeColumn)) {
+                    if (data.Vf[i].c[column]) {
+                        if (data.Vf[i].c[column].f) {
 
-                          // add style to the cell
-                          if (column == scoreColumn) {
-                              tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`;
-                          } else if (column == winChanceColumn) {
-                            let backgroundColor = "";
+                            // add style to the cell
+                            if (column == scoreColumn) {
+                                tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`;
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
 
-                            for (let j = 0; j < colorMap.length; j++) {
-                              const item = colorMap[j];
-                              if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
-                                backgroundColor = item.color;
-                                break;
-                              }
-                            }
-                              tableBody +=
-                                  `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].f}</td>`;
-                          } else {
-                              tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`;
-                          }
-
-                      } else {
-                          if (column == scoreColumn) {
-                              tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`;
-                          } else if (column == winChanceColumn) {
-                            let backgroundColor = "";
-
-                            for (let j = 0; j < colorMap.length; j++) {
-                              const item = colorMap[j];
-                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                                backgroundColor = item.color;
-                                break;
-                              }
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
+                                tableBody +=
+                                    `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].f}</td>`;
+                            } else {
+                                tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`;
                             }
 
-                              tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].v}</td>`;
-                          } else {
-                              tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`;
-                          }
-                      }
-                  } else {
-                      tableBody += `<td></td>`;
-                  }
-              } else {
-                  // if cell is not null
-                  if (data.Vf[i].c[column]) {
-                      if (data.Vf[i].c[column].f) {
-                          // add style to the cell
-                          if (column == scoreColumn) {
-                              tableBody +=
-                                  `<td>
+                        } else {
+                            if (column == scoreColumn) {
+                                tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`;
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
+
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
+
+                                tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].v}</td>`;
+                            } else {
+                                tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`;
+                            }
+                        }
+                    } else {
+                        tableBody += `<td></td>`;
+                    }
+                } else {
+                    // if cell is not null
+                    if (data.Vf[i].c[column]) {
+                        if (data.Vf[i].c[column].f) {
+                            // add style to the cell
+                            if (column == scoreColumn) {
+                                tableBody +=
+                                    `<td>
                                     <span class="score">
                                       ${data.Vf[i].c[column].f}
                                     </span>
                                   </td>`;
-                          } else if (column == winChanceColumn) {
-                            let backgroundColor = "";
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
 
-                            for (let j = 0; j < colorMap.length; j++) {
-                              const item = colorMap[j];
-                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                                backgroundColor = item.color;
-                                break;
-                              }
-                            }
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
 
-                              tableBody +=
-                                  `<td>
+                                tableBody +=
+                                    `<td>
                                     <span class="winChance" style="background-color:${backgroundColor}">
                                       ${data.Vf[i].c[column].f}
                                     </span>
                                   </td>`;
-                          } else {
-                              tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
-                          }
-                      } else {
-                          if (column == scoreColumn) {
-                              tableBody +=
-                                  `<td>
+                            } else {
+                                tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
+                            }
+                        } else {
+                            if (column == scoreColumn) {
+                                tableBody +=
+                                    `<td>
                                     <span class="score">
                                       ${data.Vf[i].c[column].v}
                                     </span>
                                   </td>`;
-                          } else if (column == winChanceColumn) {
-                            let backgroundColor = "";
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
 
-                            for (let j = 0; j < colorMap.length; j++) {
-                              const item = colorMap[j];
-                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                                backgroundColor = item.color;
-                                break;
-                              }
-                            }
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
 
-                              tableBody +=
-                                  `<td>
+                                tableBody +=
+                                    `<td>
                                     <span class="winChance" style="background-color:${backgroundColor}">
                                       ${data.Vf[i].c[column].v}
                                     </span>
                                   </td>`;
-                          } else if (column == imageColumn) {
-                              tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column+1].v}"></img></td>`;
-                          } else {
-                              tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
-                          }
-                      }
-                  } else if (column != totalColumn && column != timeColumn) {
-                      tableBody += `<td></td>`;
-                  }
-              }
-          }
-          tableBody += '</tr>';
-      }
-      tableBody += '</tbody>';
-      $('#web-projections').append(tableBody);
+                            } else if (column == imageColumn) {
+                                tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column+1].v}"></img></td>`;
+                            } else {
+                                tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
+                            }
+                        }
+                    } else if (column != totalColumn && column != timeColumn) {
+                        tableBody += `<td></td>`;
+                    }
+                }
+            }
+            tableBody += '</tr>';
+        }
+        tableBody += '</tbody>';
+        $('#web-projections').append(tableBody);
     }
 
-    function handleQueryResponseMobile(response){
-      if (response.isError()) {
+    function handleQueryResponseMobile(response) {
+        if (response.isError()) {
             alert('There was a problem with your query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
             return;
         }
@@ -218,7 +248,7 @@
         // populate column head
         let htmlHeaders = '<thead><tr>';
         for (let i = 0; i < data.cf.length; i++) {
-          htmlHeaders += `<th>${data.cf[i].label}</th>`;
+            htmlHeaders += `<th>${data.cf[i].label}</th>`;
         }
         htmlHeaders += '</tr></thead>'
         $('#mobile-projections').append(htmlHeaders);
@@ -226,144 +256,129 @@
         // populate the data
         let tableBody = '<tbody><tr>';
         for (let i = 0; i < data.Vf.length; i++) {
-          tableBody += '<tr>';
-          for (let column = 0; column < data.Vf[i].c.length; column++) {
+            tableBody += '<tr>';
+            for (let column = 0; column < data.Vf[i].c.length; column++) {
 
-            // if row is even and 'time' or 'total' column have rowspan 2
-            if(i%2==0 && (column == timeColumn)){
-              if (data.Vf[i].c[column]) {
-                if (data.Vf[i].c[column].f) {
-                  if(column == scoreColumn){
-                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`; 
-                  }
-                  else if(column == winChanceColumn){
-                    let backgroundColor = "";
+                // if row is even and 'time' or 'total' column have rowspan 2
+                if (i % 2 == 0 && (column == timeColumn)) {
+                    if (data.Vf[i].c[column]) {
+                        if (data.Vf[i].c[column].f) {
+                            if (column == scoreColumn) {
+                                tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`;
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
 
-                    for (let j = 0; j < colorMap.length; j++) {
-                      const item = colorMap[j];
-                      if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
-                        backgroundColor = item.color;
-                        break;
-                      }
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
+                                tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}>${data.Vf[i].c[column].f}</td>`;
+
+                            } else {
+                                tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`;
+                            }
+                        } else {
+                            if (column == scoreColumn) {
+                                tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`;
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
+
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
+                                tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}>${data.Vf[i].c[column].v}</td>`;
+
+                            } else {
+                                tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`;
+                            }
+                        }
+                    } else {
+                        tableBody += `<td></td>`;
                     }
-                    tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}>${data.Vf[i].c[column].f}</td>`; 
-                    
-                  }
-                  else{
-                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`; 
-                  }
-                }
-                else{
-                  if(column == scoreColumn){
-                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`; 
-                  }
-                  else if(column == winChanceColumn){
-                    let backgroundColor = "";
-
-                    for (let j = 0; j < colorMap.length; j++) {
-                      const item = colorMap[j];
-                      if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                        backgroundColor = item.color;
-                        break;
-                      }
-                    }
-                    tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}>${data.Vf[i].c[column].v}</td>`; 
-                    
-                  }
-                  else{
-                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`; 
-                  }
-                }
-              }
-              else{
-                tableBody += `<td></td>`;
-              }
-            }
-            else {
-              // if cell is not null
-              if (data.Vf[i].c[column]) {
-                if (data.Vf[i].c[column].f) {
-                  if(column == scoreColumn){
-                      tableBody += 
-                      `<td>
+                } else {
+                    // if cell is not null
+                    if (data.Vf[i].c[column]) {
+                        if (data.Vf[i].c[column].f) {
+                            if (column == scoreColumn) {
+                                tableBody +=
+                                    `<td>
                       <span class="score">
                         ${data.Vf[i].c[column].f}
                       </span>
                       </td>`;
-                  }
-                  else if(column == winChanceColumn){
-                    let backgroundColor = "";
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
 
-                    for (let j = 0; j < colorMap.length; j++) {
-                      const item = colorMap[j];
-                      if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
-                        backgroundColor = item.color;
-                        break;
-                      }
-                    }
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
 
-                    tableBody += 
-                    `<td>
+                                tableBody +=
+                                    `<td>
                       <span class="winChance" style="background-color:${backgroundColor}>
                         ${data.Vf[i].c[column].f}
                       </span>
-                    </td>`;  
-                  }
-                  else if(column == imageColumn){
-                    tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].f}"></img></td>`;  
-                  }
-                  else{
-                    tableBody += `<td>${data.Vf[i].c[column].f}</td>`;  
-                  }
-                }
-                else{
-                  if(column == scoreColumn){
-                    tableBody += 
-                    `<td>
+                    </td>`;
+                            } else if (column == imageColumn) {
+                                tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].f}"></img></td>`;
+                            } else {
+                                tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
+                            }
+                        } else {
+                            if (column == scoreColumn) {
+                                tableBody +=
+                                    `<td>
                     <span class="score">
                       ${data.Vf[i].c[column].v}
                     </span>
                     </td>`;
-                }
-                else if(column == winChanceColumn){
-                  let backgroundColor = "";
+                            } else if (column == winChanceColumn) {
+                                let backgroundColor = "";
 
-                  for (let j = 0; j < colorMap.length; j++) {
-                    const item = colorMap[j];
-                    if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                      backgroundColor = item.color;
-                      break;
-                    }
-                  }
+                                for (let j = 0; j < colorMap.length; j++) {
+                                    const item = colorMap[j];
+                                    if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                        backgroundColor = item.color;
+                                        break;
+                                    }
+                                }
 
-                  tableBody += 
-                  `<td>
+                                tableBody +=
+                                    `<td>
                     <span class="winChance" style="background-color:${backgroundColor}>
                       ${data.Vf[i].c[column].v}
                     </span>
-                  </td>`;  
+                  </td>`;
+                            } else if (column == imageColumn) {
+                                tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;
+                            } else {
+                                tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
+                            }
+                        }
+                    } else if (column != timeColumn) {
+                        tableBody += `<td></td>`;
+                    }
                 }
-                else if(column == imageColumn){
-                  tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
-                }
-                else{
-                  tableBody += `<td>${data.Vf[i].c[column].v}</td>`;  
-                }
-                }
-              }
-              else if (column != timeColumn) {
-                tableBody += `<td></td>`;
-              }
             }
-          }
-          tableBody += '</tr>';
+            tableBody += '</tr>';
         }
         tableBody += '</tbody>';
         $('#mobile-projections').append(tableBody);
     }
     google.setOnLoadCallback(drawVisualization);
     google.setOnLoadCallback(drawVisualizationMobile);
-</script>
+  </script>
 
 <style type="text/css">
   img {
