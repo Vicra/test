@@ -54,25 +54,46 @@
             max: 1
         }, ];
 
-        const map = {
-            'Arizona Diamondbacks' : '',
-            'Atlanta Braves' : '',
-            'Boston Red Sox' : '',
-            'Chicago Cubs' : '',
-            'Chicago White Sox' : '',
-            'Cincinnati Reds' : '',
-            'Detroit Tigers' : '',
-            'Houston Astros' : '',
-            'Los Angeles Dodgers' : '',
-            'Miami Marlins' : '',
-            'Milwaukee Brewers' : '',
-            'Minnesota Twins' : '',
-            'New York Mets' : '',
-            'New York Yankees' : '',
-            'Philadelphia Phillies' : '',
-            'St. Louis Cardinals' : '',
-            'Texas Rangers' : '',
-            'Washington Nationals' : '',
+        const imageHashMap = {
+            'Arizona Diamondbacks' : 'https://i.ibb.co/n7dc4g5/Arizona-Diamondbacks.png',
+            'Atlanta Braves' : 'https://i.ibb.co/bHq0qhB/Atlanta-Braves.png',
+            'Boston Red Sox' : 'https://i.ibb.co/MB2shsx/Boston-Red-Sox.png',
+            'Chicago Cubs' : 'https://i.ibb.co/mccKq0Y/Chicago-Cubs.png',
+            'Chicago White Sox' : 'https://i.ibb.co/BNDMLs0/Chicago-White-Sox.png',
+            'Cincinnati Reds' : 'https://i.ibb.co/6tJRMBM/Cincinnati-Reds.png',
+            'Detroit Tigers' : 'https://i.ibb.co/JrxrYvt/Detroit-Tigers.png',
+            'Houston Astros' : 'https://i.ibb.co/nCRYGpL/Houston-Astros.png',
+            'Los Angeles Dodgers' : 'https://i.ibb.co/z6KfPCV/Los-Angeles-Dodgers.png',
+            'Miami Marlins' : 'https://i.ibb.co/Vm75rvF/Miami-Marlins.png',
+            'Milwaukee Brewers' : 'https://i.ibb.co/K76hLcN/Milwaukee-Brewers.png',
+            'Minnesota Twins' : 'https://i.ibb.co/wh3ckJT/Minnesota-Twins.png',
+            'New York Mets' : 'https://i.ibb.co/qMNv3F2/New-York-Mets.png',
+            'New York Yankees' : 'https://i.ibb.co/WKwVhCH/New-York-Yankees.png',
+            'Philadelphia Phillies' : 'https://i.ibb.co/FYk6nqb/Philadelphia-Phillies.png',
+            'St. Louis Cardinals' : 'https://i.ibb.co/bWdFpcR/St-Louis-Cardinals.png',
+            'Texas Rangers' : 'https://i.ibb.co/23x5VKp/Texas-Rangers.png',
+            'Washington Nationals' : 'https://i.ibb.co/0CXhFwP/Washington-Nationals.png',
+        };
+
+        const imageMobileHashMap = {
+            'ARI' : 'https://i.ibb.co/n7dc4g5/Arizona-Diamondbacks.png',
+            'ATL' : 'https://i.ibb.co/bHq0qhB/Atlanta-Braves.png',
+            'BOS' : 'https://i.ibb.co/MB2shsx/Boston-Red-Sox.png',
+            'Chicago Cubs' : 'https://i.ibb.co/mccKq0Y/Chicago-Cubs.png',
+            'Chicago White Sox' : 'https://i.ibb.co/BNDMLs0/Chicago-White-Sox.png',
+            'CIN' : 'https://i.ibb.co/6tJRMBM/Cincinnati-Reds.png',
+            'DET' : 'https://i.ibb.co/JrxrYvt/Detroit-Tigers.png',
+            'HOU' : 'https://i.ibb.co/nCRYGpL/Houston-Astros.png',
+            'LAD' : 'https://i.ibb.co/z6KfPCV/Los-Angeles-Dodgers.png',
+            'MIA' : 'https://i.ibb.co/Vm75rvF/Miami-Marlins.png',
+            'MIL' : 'https://i.ibb.co/K76hLcN/Milwaukee-Brewers.png',
+            'MIN' : 'https://i.ibb.co/wh3ckJT/Minnesota-Twins.png',
+            'NYN' : 'https://i.ibb.co/qMNv3F2/New-York-Mets.png',
+            'NYY' : 'https://i.ibb.co/WKwVhCH/New-York-Yankees.png',
+            'PHI' : 'https://i.ibb.co/FYk6nqb/Philadelphia-Phillies.png',
+            'St. Louis Cardinals' : 'https://i.ibb.co/bWdFpcR/St-Louis-Cardinals.png',
+            'TEX' : 'https://i.ibb.co/23x5VKp/Texas-Rangers.png',
+            'WAS' : 'https://i.ibb.co/0CXhFwP/Washington-Nationals.png',
         };
 
         function drawVisualization() {
@@ -240,7 +261,8 @@
                                         </span>
                                     </td>`;
                                 } else if (column == imageColumn) {
-                                    tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column+1].v}"></img></td>`;
+                                    // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column+1].v}"></img></td>`;
+                                    tableBody += `<td><img src="${imageHashMap[decodeURIComponent(data.Vf[i].c[column+1].v)]}"></img></td>`;
                                 } else {
                                     tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
                                 }
@@ -320,7 +342,8 @@
                                         </td>`;
                                 } else if (column == imageColumn) {
                                     // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].f}"></img></td>`;
-                                    tableBody += `<td></td>`;
+                                    tableBody += `<td><img src="${imageHashMap[decodeURIComponent(data.Vf[i].c[column+1].f)]}"></img></td>`;
+                                    // tableBody += `<td></td>`;
                                 } else {
                                     tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
                                 }
@@ -350,7 +373,8 @@
                                     </td>`;
                                 } else if (column == imageColumn) {
                                     // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;
-                                    tableBody += `<td></td>`;
+                                    tableBody += `<td><img src="${imageHashMap[decodeURIComponent(data.Vf[i].c[column+1].v)]}"></img></td>`;
+                                    // tableBody += `<td></td>`;
                                 } else {
                                     tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
                                 }
