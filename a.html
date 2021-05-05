@@ -282,20 +282,21 @@
             else {
               // if cell is not null
               if (data.Vf[i].c[column]) {
-                if(column == scoreColumn){
-                    tableBody += 
-                    `<td>
-                    <span class="score">
-                      ${data.Vf[i].c[column].v}
-                    </span>
-                    </td>`;
+                if (data.Vf[i].c[column].f) {
+                  if(column == scoreColumn){
+                      tableBody += 
+                      `<td>
+                      <span class="score">
+                        ${data.Vf[i].c[column].f}
+                      </span>
+                      </td>`;
                   }
                   else if(column == winChanceColumn){
                     let backgroundColor = "";
 
                     for (let j = 0; j < colorMap.length; j++) {
                       const item = colorMap[j];
-                      if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                      if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
                         backgroundColor = item.color;
                         break;
                       }
@@ -304,16 +305,51 @@
                     tableBody += 
                     `<td>
                       <span class="winChance" style="background-color:${backgroundColor}>
-                        ${data.Vf[i].c[column].v}
+                        ${data.Vf[i].c[column].f}
                       </span>
                     </td>`;  
                   }
                   else if(column == imageColumn){
-                    tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
+                    tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].f}"></img></td>`;  
                   }
                   else{
-                    tableBody += `<td>${data.Vf[i].c[column].v}</td>`;  
+                    tableBody += `<td>${data.Vf[i].c[column].f}</td>`;  
                   }
+                }
+                else{
+                  if(column == scoreColumn){
+                    tableBody += 
+                    `<td>
+                    <span class="score">
+                      ${data.Vf[i].c[column].v}
+                    </span>
+                    </td>`;
+                }
+                else if(column == winChanceColumn){
+                  let backgroundColor = "";
+
+                  for (let j = 0; j < colorMap.length; j++) {
+                    const item = colorMap[j];
+                    if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                      backgroundColor = item.color;
+                      break;
+                    }
+                  }
+
+                  tableBody += 
+                  `<td>
+                    <span class="winChance" style="background-color:${backgroundColor}>
+                      ${data.Vf[i].c[column].v}
+                    </span>
+                  </td>`;  
+                }
+                else if(column == imageColumn){
+                  tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;  
+                }
+                else{
+                  tableBody += `<td>${data.Vf[i].c[column].v}</td>`;  
+                }
+                }
               }
               else if (column != timeColumn) {
                 tableBody += `<td></td>`;
