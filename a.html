@@ -66,7 +66,6 @@
           return;
       }
       let data = response.getDataTable();
-      console.log(data);
       let timeColumn = 0;
       let imageColumn = 1;
       let scoreColumn = 4;
@@ -100,9 +99,6 @@
                             for (let j = 0; j < colorMap.length; j++) {
                               const item = colorMap[j];
                               if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
-                                console.log("item.min", item.min);
-                                console.log("item.max", item.max);
-                                console.log("v", data.Vf[i].c[column].f);
                                 backgroundColor = item.color;
                                 break;
                               }
@@ -117,7 +113,17 @@
                           if (column == scoreColumn) {
                               tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`;
                           } else if (column == winChanceColumn) {
-                              tableBody += `<td rowspan="2" class="winChance">${data.Vf[i].c[column].v}</td>`;
+                            let backgroundColor = "";
+
+                            for (let j = 0; j < colorMap.length; j++) {
+                              const item = colorMap[j];
+                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                backgroundColor = item.color;
+                                break;
+                              }
+                            }
+
+                              tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].v}</td>`;
                           } else {
                               tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`;
                           }
@@ -143,9 +149,6 @@
                             for (let j = 0; j < colorMap.length; j++) {
                               const item = colorMap[j];
                               if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                                console.log("item.min", item.min);
-                                console.log("item.max", item.max);
-                                console.log("v", data.Vf[i].c[column].v);
                                 backgroundColor = item.color;
                                 break;
                               }
@@ -169,9 +172,19 @@
                                     </span>
                                   </td>`;
                           } else if (column == winChanceColumn) {
+                            let backgroundColor = "";
+
+                            for (let j = 0; j < colorMap.length; j++) {
+                              const item = colorMap[j];
+                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                                backgroundColor = item.color;
+                                break;
+                              }
+                            }
+
                               tableBody +=
                                   `<td>
-                                    <span class="winChance">
+                                    <span class="winChance" style="background-color:${backgroundColor}">
                                       ${data.Vf[i].c[column].v}
                                     </span>
                                   </td>`;
@@ -186,9 +199,9 @@
                   }
               }
           }
-          tableBody += '</tr>'
+          tableBody += '</tr>';
       }
-      tableBody += '</tbody>'
+      tableBody += '</tbody>';
       $('#web-projections').append(tableBody);
     }
 
@@ -198,7 +211,6 @@
             return;
         }
         let data = response.getDataTable();
-        console.log(data);
         let timeColumn = 0;
         let imageColumn = 1;
         let scoreColumn = 4;
@@ -230,9 +242,6 @@
                     for (let j = 0; j < colorMap.length; j++) {
                       const item = colorMap[j];
                       if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
-                        console.log("item.min", item.min);
-                        console.log("item.max", item.max);
-                        console.log("v", data.Vf[i].c[column].f);
                         backgroundColor = item.color;
                         break;
                       }
@@ -254,9 +263,6 @@
                     for (let j = 0; j < colorMap.length; j++) {
                       const item = colorMap[j];
                       if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                        console.log("item.min", item.min);
-                        console.log("item.max", item.max);
-                        console.log("v", data.Vf[i].c[column].v);
                         backgroundColor = item.color;
                         break;
                       }
@@ -290,9 +296,6 @@
                     for (let j = 0; j < colorMap.length; j++) {
                       const item = colorMap[j];
                       if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
-                        console.log("item.min", item.min);
-                        console.log("item.max", item.max);
-                        console.log("v", data.Vf[i].c[column].v);
                         backgroundColor = item.color;
                         break;
                       }
@@ -317,9 +320,9 @@
               }
             }
           }
-          tableBody += '</tr>'
+          tableBody += '</tr>';
         }
-        tableBody += '</tbody>'
+        tableBody += '</tbody>';
         $('#mobile-projections').append(tableBody);
     }
     google.setOnLoadCallback(drawVisualization);
