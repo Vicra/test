@@ -33,11 +33,11 @@
             min: 0.3,
             max: 0.39999
         }, {
-            color: "#5b9a40",
+            color: "#6aa84f",
             min: 0.4,
             max: 0.49999
         }, {
-            color: "#6aa84f",
+            color: "#5b9a40",
             min: 0.5,
             max: 0.59999
         }, {
@@ -188,7 +188,7 @@
 
                                 // add style to the cell
                                 if (column == scoreColumn) {
-                                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`;
+                                    tableBody += `<td rowspan="2" class="score" style="text-align:right;">${data.Vf[i].c[column].f}</td>`;
                                 } else if (column == winChanceColumn) {
                                     let backgroundColor = "";
 
@@ -200,14 +200,14 @@
                                         }
                                     }
                                     tableBody +=
-                                        `<td rowspan="2" class="winChance" style="background-color:${backgroundColor};">${data.Vf[i].c[column].f}</td>`;
+                                        `<td rowspan="2" class="winChance" style="background-color:${backgroundColor};text-align: left;">${data.Vf[i].c[column].f}</td>`;
                                 } else {
                                     tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`;
                                 }
 
                             } else {
                                 if (column == scoreColumn) {
-                                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`;
+                                    tableBody += `<td rowspan="2" class="score" style="text-align:right;">${data.Vf[i].c[column].v}</td>`;
                                 } else if (column == winChanceColumn) {
                                     let backgroundColor = "";
 
@@ -219,7 +219,7 @@
                                         }
                                     }
 
-                                    tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].v}</td>`;
+                                    tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor};text-align: left;">${data.Vf[i].c[column].v}</td>`;
                                 } else {
                                     tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`;
                                 }
@@ -234,7 +234,7 @@
                                 // add style to the cell
                                 if (column == scoreColumn) {
                                     tableBody +=
-                                        `<td>
+                                        `<td style="text-align:right;">
                                         <span class="score">
                                         ${data.Vf[i].c[column].f}
                                         </span>
@@ -252,7 +252,7 @@
 
                                     tableBody +=
                                         `<td>
-                                        <span class="winChance" style="background-color:${backgroundColor}">
+                                        <span class="winChance" style="background-color:${backgroundColor};text-align: left;">
                                         ${data.Vf[i].c[column].f}
                                         </span>
                                     </td>`;
@@ -262,7 +262,7 @@
                             } else {
                                 if (column == scoreColumn) {
                                     tableBody +=
-                                        `<td>
+                                        `<td style="text-align:right;">
                                         <span class="score">
                                         ${data.Vf[i].c[column].v}
                                         </span>
@@ -280,7 +280,7 @@
 
                                     tableBody +=
                                         `<td>
-                                        <span class="winChance" style="background-color:${backgroundColor}">
+                                        <span class="winChance" style="background-color:${backgroundColor};text-align: left;">
                                         ${data.Vf[i].c[column].v}
                                         </span>
                                     </td>`;
@@ -342,7 +342,7 @@
                             if (data.Vf[i].c[column].f) {
                                 if (column == scoreColumn) {
                                     tableBody +=
-                                        `<td>
+                                        `<td style="text-align:right;">
                                         <span class="score">
                                             ${data.Vf[i].c[column].f}
                                         </span>
@@ -360,7 +360,7 @@
                                     
                                     tableBody +=
                                         `<td>
-                                        <span class="winChance" style="background-color:${backgroundColor}">
+                                        <span class="winChance" style="background-color:${backgroundColor};text-align: left;">
                                             ${data.Vf[i].c[column].f}
                                         </span>
                                         </td>`;
@@ -374,7 +374,7 @@
                             } else {
                                 if (column == scoreColumn) {
                                     tableBody +=
-                                        `<td>
+                                        `<td style="text-align:right;">
                                         <span class="score">
                                             ${data.Vf[i].c[column].v}
                                         </span>
@@ -391,7 +391,7 @@
                                     }
                                     tableBody +=
                                         `<td>
-                                        <span class="winChance" style="background-color:${backgroundColor}">
+                                        <span class="winChance" style="background-color:${backgroundColor};text-align: left;">
                                             ${data.Vf[i].c[column].v}
                                         </span>
                                     </td>`;
@@ -497,15 +497,13 @@
           }
         
           .score {
-            background-color: 595959;
+            background-color: #595959;
             padding: 5px 17px;
-            text-align: right;
           }
         
           .winChance {
             background-color: green;
             padding: 5px 17px;
-            text-align: left;
           }
         
           tr:nth-child(odd){
