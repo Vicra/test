@@ -306,16 +306,12 @@
 
                                     for (let j = 0; j < colorMap.length; j++) {
                                         const item = colorMap[j];
-                                        console.log("item.min", item.min);
-                                        console.log("item.max", item.max);
-                                        console.log("data.Vf[i].c[column].f", data.Vf[i].c[column].f);
                                         if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
                                             backgroundColor = item.color;
                                             break;
                                         }
                                     }
-                                    console.log("backgroundColor", backgroundColor);
-
+                                    
                                     tableBody +=
                                         `<td>
                                         <span class="winChance" style="background-color:${backgroundColor}">
@@ -341,15 +337,11 @@
 
                                     for (let j = 0; j < colorMap.length; j++) {
                                         const item = colorMap[j];
-                                        console.log("item.min", item.min);
-                                        console.log("item.max", item.max);
-                                        console.log("data.Vf[i].c[column].v", data.Vf[i].c[column].v);
                                         if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
                                             backgroundColor = item.color;
                                             break;
                                         }
                                     }
-                                    console.log("backgroundColor", backgroundColor);
                                     tableBody +=
                                         `<td>
                                         <span class="winChance" style="background-color:${backgroundColor}">
@@ -424,7 +416,7 @@
             }
           }
         
-          @media screen and (min-width: 801px) and (max-width: 5000px){
+          @media screen and (min-width: 801px) and (max-width: 1300px){
             table th{
               font-size: 14px;
             }
@@ -436,6 +428,19 @@
               width: 30px;
             }
           }
+
+        @media screen and (min-width: 1301px) and (max-width: 5000px){
+            table th{
+              font-size: 17px;
+            }
+        
+            table td{
+              font-size: 20px;
+            }
+            img {
+              width: 40px;
+            }
+        }
         
           table {
             background-color: #000000;
