@@ -285,7 +285,6 @@
                                         </span>
                                     </td>`;
                                 } else if (column == imageColumn) {
-                                    // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column+1].v}"></img></td>`;
                                     tableBody += `<td><img src="${imageHashMap[data.Vf[i].c[column+1].v]}"></img></td>`;
                                 } else {
                                     tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
@@ -396,9 +395,7 @@
                                         </span>
                                     </td>`;
                                 } else if (column == imageColumn) {
-                                    // tableBody += `<td><img src="https://i.ibb.co/${data.Vf[i].c[column].v}"></img></td>`;
                                     tableBody += `<td><img src="${imageMobileHashMap[data.Vf[i].c[column+1].v]}"></img></td>`;
-                                    // tableBody += `<td></td>`;
                                 } else {
                                     tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
                                 }
