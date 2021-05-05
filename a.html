@@ -99,10 +99,10 @@
 
                             for (let j = 0; j < colorMap.length; j++) {
                               const item = colorMap[j];
-                              if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
+                              if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
                                 console.log("item.min", item.min);
                                 console.log("item.max", item.max);
-                                console.log("v", data.Vf[i].c[column].v);
+                                console.log("v", data.Vf[i].c[column].f);
                                 backgroundColor = item.color;
                                 break;
                               }
@@ -220,7 +220,32 @@
             // if row is even and 'time' or 'total' column have rowspan 2
             if(i%2==0 && (column == timeColumn)){
               if (data.Vf[i].c[column]) {
-                if(column == scoreColumn){
+                if (data.Vf[i].c[column].f) {
+                  if(column == scoreColumn){
+                    tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].f}</td>`; 
+                  }
+                  else if(column == winChanceColumn){
+                    let backgroundColor = "";
+
+                    for (let j = 0; j < colorMap.length; j++) {
+                      const item = colorMap[j];
+                      if (item.min <= data.Vf[i].c[column].f && item.max >= data.Vf[i].c[column].f) {
+                        console.log("item.min", item.min);
+                        console.log("item.max", item.max);
+                        console.log("v", data.Vf[i].c[column].f);
+                        backgroundColor = item.color;
+                        break;
+                      }
+                    }
+                    tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}>${data.Vf[i].c[column].f}</td>`; 
+                    
+                  }
+                  else{
+                    tableBody += `<td rowspan="2">${data.Vf[i].c[column].f}</td>`; 
+                  }
+                }
+                else{
+                  if(column == scoreColumn){
                     tableBody += `<td rowspan="2" class="score">${data.Vf[i].c[column].v}</td>`; 
                   }
                   else if(column == winChanceColumn){
@@ -242,6 +267,7 @@
                   else{
                     tableBody += `<td rowspan="2">${data.Vf[i].c[column].v}</td>`; 
                   }
+                }
               }
               else{
                 tableBody += `<td></td>`;
