@@ -73,7 +73,7 @@
             'St. Louis Cardinals' : '',
             'Texas Rangers' : '',
             'Washington Nationals' : '',
-        }
+        };
 
         function drawVisualization() {
             //desktop
@@ -308,11 +308,16 @@
 
                                     for (let j = 0; j < colorMap.length; j++) {
                                         const item = colorMap[j];
+                                        console.log("item.min", item.min);
+                                        console.log("item.max", item.max);
+                                        console.log("data.Vf[i].c[column].v", data.Vf[i].c[column].v);
                                         if (item.min <= data.Vf[i].c[column].v && item.max >= data.Vf[i].c[column].v) {
                                             backgroundColor = item.color;
                                             break;
                                         }
                                     }
+
+                                    console.log("backgroundColor", backgroundColor);
                                     tableBody += `<td rowspan="2" class="winChance" style="background-color:${backgroundColor}">${data.Vf[i].c[column].v}</td>`;
 
                                 } else {
