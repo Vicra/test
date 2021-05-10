@@ -184,11 +184,11 @@
                             // add style to the cell
                             if (timeColumn.includes(column)) {
                                 tableBody +=
-                                    `<td rowspan="2">
-                                    <span class="time">
-                                    ${data.Vf[i].c[column].f}
-                                    </span>
-                                </td>`;
+                                    `<td>
+                                        <span class="time">
+                                        ${data.Vf[i].c[column].f}
+                                        </span>
+                                    </td>`;
                             }
                             else if (scoreColumn.includes(column)) {
                                 tableBody +=
@@ -223,7 +223,7 @@
                             }
                             else if (timeColumn.includes(column)) {
                                 tableBody +=
-                                    `<td rowspan="2">
+                                    `<td>
                                         <span class="time">
                                             ${data.Vf[i].c[column].v}
                                         </span>
