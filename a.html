@@ -58,69 +58,26 @@
         }, ];
 
         const imageHashMap = {
-            'Arizona Diamondbacks' : 'https://i.ibb.co/n7dc4g5/Arizona-Diamondbacks.png',
-            'Atlanta Braves' : 'https://i.ibb.co/bHq0qhB/Atlanta-Braves.png',
-            'Baltimore Orioles': 'https://i.ibb.co/XWSz38x/Baltimore-Orioles.png',
-            'Boston Red Sox' : 'https://i.ibb.co/MB2shsx/Boston-Red-Sox.png',
-            'Chicago Cubs' : 'https://i.ibb.co/mccKq0Y/Chicago-Cubs.png',
-            'Chicago White Sox' : 'https://i.ibb.co/BNDMLs0/Chicago-White-Sox.png',
-            'Cincinnati Reds' : 'https://i.ibb.co/6tJRMBM/Cincinnati-Reds.png',
-            'Cleveland Indians' : 'https://i.ibb.co/V9m1Z7q/Cleveland-Indians.png',
-            'Colorado Rockies':'https://i.ibb.co/Y86DzzH/Colorado-Rockies.png',
-            'Detroit Tigers' : 'https://i.ibb.co/JrxrYvt/Detroit-Tigers.png',
-            'Houston Astros' : 'https://i.ibb.co/nCRYGpL/Houston-Astros.png',
-            'Kansas City Royals':'https://i.ibb.co/jwYxsJH/Kansas-City-Royals.png',
-            'Los Angeles Angels':'https://i.ibb.co/WyyMxRs/Los-Angeles-Angels.png',
-            'Los Angeles Dodgers' : 'https://i.ibb.co/z6KfPCV/Los-Angeles-Dodgers.png',
-            'Miami Marlins' : 'https://i.ibb.co/Vm75rvF/Miami-Marlins.png',
-            'Milwaukee Brewers' : 'https://i.ibb.co/K76hLcN/Milwaukee-Brewers.png',
-            'Minnesota Twins' : 'https://i.ibb.co/wh3ckJT/Minnesota-Twins.png',
-            'New York Mets' : 'https://i.ibb.co/qMNv3F2/New-York-Mets.png',
-            'New York Yankees' : 'https://i.ibb.co/WKwVhCH/New-York-Yankees.png',
-            'Oakland Athletics':'https://i.ibb.co/j6GYkD0/Oakland-Athletics.png',
-            'Philadelphia Phillies' : 'https://i.ibb.co/FYk6nqb/Philadelphia-Phillies.png',
-            'Pittsburgh Pirates': 'https://i.ibb.co/S0zqwj9/Pittsburgh-Pirates.png',
-            'San Diego Padres' :'https://i.ibb.co/jr9b5wL/San-Diego-Padres.png',
-            'San Francisco Giants' :'https://i.ibb.co/vc8HqrZ/San-Francisco-Giants.png',
-            'Seattle Mariners':'https://i.ibb.co/4t8gHVG/Seattle-Mariners.png',
-            'St. Louis Cardinals' : 'https://i.ibb.co/bWdFpcR/St-Louis-Cardinals.png',
-            'Tampa Bay Rays':'https://i.ibb.co/8MrzS0r/Tampa-Bay-Rays.png',
-            'Texas Rangers' : 'https://i.ibb.co/23x5VKp/Texas-Rangers.png',
-            'Toronto Blue Jays':'https://i.ibb.co/VQz0TKg/Toronto-Blue-Jays.png',
-            'Washington Nationals' : 'https://i.ibb.co/0CXhFwP/Washington-Nationals.png',
-        };
-
-        const imageMobileHashMap = {
-            'ARI' : 'https://i.ibb.co/n7dc4g5/Arizona-Diamondbacks.png',
-            'ATL' : 'https://i.ibb.co/bHq0qhB/Atlanta-Braves.png',
-            'BAL': 'https://i.ibb.co/XWSz38x/Baltimore-Orioles.png',
-            'BOS' : 'https://i.ibb.co/MB2shsx/Boston-Red-Sox.png',
-            'CHN' : 'https://i.ibb.co/mccKq0Y/Chicago-Cubs.png',
-            'CHA' : 'https://i.ibb.co/BNDMLs0/Chicago-White-Sox.png',
-            'CIN' : 'https://i.ibb.co/6tJRMBM/Cincinnati-Reds.png',
-            'CLE' : 'https://i.ibb.co/V9m1Z7q/Cleveland-Indians.png',
-            'COL':'https://i.ibb.co/Y86DzzH/Colorado-Rockies.png',
-            'DET' : 'https://i.ibb.co/JrxrYvt/Detroit-Tigers.png',
-            'HOU' : 'https://i.ibb.co/nCRYGpL/Houston-Astros.png',
-            'KC':'https://i.ibb.co/jwYxsJH/Kansas-City-Royals.png',
-            'LAA':'https://i.ibb.co/WyyMxRs/Los-Angeles-Angels.png',
-            'LAD' : 'https://i.ibb.co/z6KfPCV/Los-Angeles-Dodgers.png',
-            'MIA' : 'https://i.ibb.co/Vm75rvF/Miami-Marlins.png',
-            'MIL' : 'https://i.ibb.co/K76hLcN/Milwaukee-Brewers.png',
-            'MIN' : 'https://i.ibb.co/wh3ckJT/Minnesota-Twins.png',
-            'NYN' : 'https://i.ibb.co/qMNv3F2/New-York-Mets.png',
-            'NYY' : 'https://i.ibb.co/WKwVhCH/New-York-Yankees.png',
-            'OAK':'https://i.ibb.co/j6GYkD0/Oakland-Athletics.png',
-            'PHI' : 'https://i.ibb.co/FYk6nqb/Philadelphia-Phillies.png',
-            'PIT' : 'https://i.ibb.co/S0zqwj9/Pittsburgh-Pirates.png',
-            'SD' :'https://i.ibb.co/jr9b5wL/San-Diego-Padres.png',
-            'SFG' :'https://i.ibb.co/vc8HqrZ/San-Francisco-Giants.png',
-            'SEA':'https://i.ibb.co/4t8gHVG/Seattle-Mariners.png',
-            'SL' : 'https://i.ibb.co/bWdFpcR/St-Louis-Cardinals.png',
-            'TB':'https://i.ibb.co/8MrzS0r/Tampa-Bay-Rays.png',
-            'TEX' : 'https://i.ibb.co/23x5VKp/Texas-Rangers.png',
-            'TOR':'https://i.ibb.co/VQz0TKg/Toronto-Blue-Jays.png',
-            'WAS' : 'https://i.ibb.co/0CXhFwP/Washington-Nationals.png',
+            "Atlanta Hawks": "https://i.ibb.co/JdSkgcb/Atlanta-Hawks.png",
+            "Boston Celtics": "https://i.ibb.co/NSVbF6S/Boston-Celtics.png",
+            "Brooklyn Nets": "https://i.ibb.co/SKbkSPr/Brooklyn-Nets.png",
+            "Charlotte Hornets": "https://i.ibb.co/t2qPnqY/Charlotte-Hornets.png",
+            "Chicago Bulls": "https://i.ibb.co/0FMTVY7/Chicago-Bulls.png",
+            "Cleveland Cavaliers": "https://i.ibb.co/NYsxxrC/Cleveland-Cavaliers.png",
+            "Dallas Mavericks": "https://i.ibb.co/q9MhTzk/Dallas-Mavericks.png",
+            "Denver Nuggets": "https://i.ibb.co/b3YC4hj/Denver-Nuggets.png",
+            "Detroit Pistons": "https://i.ibb.co/27jDFHr/Detroit-Pistons.png",
+            "Golden State Warriors": "https://i.ibb.co/jfCPSRr/Golden-State-Warriors.png",
+            "Houston Rockets": "https://i.ibb.co/RNkbMSN/Houston-Rockets.png",
+            "Indiana Pacers": "https://i.ibb.co/d5PBsHF/Indiana-Pacers.png",
+            "LA Clippers": "https://i.ibb.co/P4ztcQ0/LA-Clippers.png",
+            "Los Angeles-Lakers": "https://i.ibb.co/TkZG0LB/Los-Angeles-Lakers.png",
+            "Memphis Grizzlies": "https://i.ibb.co/yBDTVbY/Memphis-Grizzlies.png",
+            "Miami Heat": "https://i.ibb.co/4pydWKG/Miami-Heat.png",
+            "Milwuakee Bucks": "https://i.ibb.co/j6dwqdy/Milwuakee-Bucks.png",
+            "Minnesota Timberwolves": "https://i.ibb.co/F7J5V45/Minnesota-Timberwolves.png",
+            "New Orleans Pelicans": "https://i.ibb.co/JdQHyWQ/New-Orleans-Pelicans.png",
+            "New York Knicks": "https://i.ibb.co/Kb2DnhJ/New-Yok-Knicks.png",
         };
 
         function drawVisualization() {
@@ -266,6 +223,13 @@
                                 tableBody += `<td>${data.Vf[i].c[column].v}</td>`;
                             }
                         }
+                    }
+                    else if(timeColumn.includes(column)){
+                        tableBody += 
+                        `<td>
+                        <img src="${imageHashMap[data.Vf[i+1].c[column+1].v]}">
+                        </img>
+                        </td>`;
                     }
                     else {
                         tableBody += `<td></td>`;
