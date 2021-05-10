@@ -58,26 +58,26 @@
         }, ];
 
         const imageHashMap = {
-            "Atlanta Hawks": "https://i.ibb.co/JdSkgcb/Atlanta-Hawks.png",
-            "Boston Celtics": "https://i.ibb.co/NSVbF6S/Boston-Celtics.png",
-            "Brooklyn Nets": "https://i.ibb.co/SKbkSPr/Brooklyn-Nets.png",
-            "Charlotte Hornets": "https://i.ibb.co/t2qPnqY/Charlotte-Hornets.png",
-            "Chicago Bulls": "https://i.ibb.co/0FMTVY7/Chicago-Bulls.png",
-            "Cleveland Cavaliers": "https://i.ibb.co/NYsxxrC/Cleveland-Cavaliers.png",
-            "Dallas Mavericks": "https://i.ibb.co/q9MhTzk/Dallas-Mavericks.png",
-            "Denver Nuggets": "https://i.ibb.co/b3YC4hj/Denver-Nuggets.png",
-            "Detroit Pistons": "https://i.ibb.co/27jDFHr/Detroit-Pistons.png",
-            "Golden State Warriors": "https://i.ibb.co/jfCPSRr/Golden-State-Warriors.png",
-            "Houston Rockets": "https://i.ibb.co/RNkbMSN/Houston-Rockets.png",
-            "Indiana Pacers": "https://i.ibb.co/d5PBsHF/Indiana-Pacers.png",
+            "Atlanta": "https://i.ibb.co/JdSkgcb/Atlanta-Hawks.png",
+            "Boston": "https://i.ibb.co/NSVbF6S/Boston-Celtics.png",
+            "Brooklyn": "https://i.ibb.co/SKbkSPr/Brooklyn-Nets.png",
+            "Charlotte": "https://i.ibb.co/t2qPnqY/Charlotte-Hornets.png",
+            "Chicago": "https://i.ibb.co/0FMTVY7/Chicago-Bulls.png",
+            "Cleveland": "https://i.ibb.co/NYsxxrC/Cleveland-Cavaliers.png",
+            "Dallas": "https://i.ibb.co/q9MhTzk/Dallas-Mavericks.png",
+            "Denver": "https://i.ibb.co/b3YC4hj/Denver-Nuggets.png",
+            "Detroit": "https://i.ibb.co/27jDFHr/Detroit-Pistons.png",
+            "Golden State": "https://i.ibb.co/jfCPSRr/Golden-State-Warriors.png",
+            "Houston": "https://i.ibb.co/RNkbMSN/Houston-Rockets.png",
+            "Indiana": "https://i.ibb.co/d5PBsHF/Indiana-Pacers.png",
             "LA Clippers": "https://i.ibb.co/P4ztcQ0/LA-Clippers.png",
-            "Los Angeles-Lakers": "https://i.ibb.co/TkZG0LB/Los-Angeles-Lakers.png",
-            "Memphis Grizzlies": "https://i.ibb.co/yBDTVbY/Memphis-Grizzlies.png",
-            "Miami Heat": "https://i.ibb.co/4pydWKG/Miami-Heat.png",
-            "Milwuakee Bucks": "https://i.ibb.co/j6dwqdy/Milwuakee-Bucks.png",
-            "Minnesota Timberwolves": "https://i.ibb.co/F7J5V45/Minnesota-Timberwolves.png",
-            "New Orleans Pelicans": "https://i.ibb.co/JdQHyWQ/New-Orleans-Pelicans.png",
-            "New York Knicks": "https://i.ibb.co/Kb2DnhJ/New-Yok-Knicks.png",
+            "Los Angeles": "https://i.ibb.co/TkZG0LB/Los-Angeles-Lakers.png",
+            "Memphis": "https://i.ibb.co/yBDTVbY/Memphis-Grizzlies.png",
+            "Miami": "https://i.ibb.co/4pydWKG/Miami-Heat.png",
+            "Milwuakee": "https://i.ibb.co/j6dwqdy/Milwuakee-Bucks.png",
+            "Minnesota": "https://i.ibb.co/F7J5V45/Minnesota-Timberwolves.png",
+            "New Orleans": "https://i.ibb.co/JdQHyWQ/New-Orleans-Pelicans.png",
+            "New York": "https://i.ibb.co/Kb2DnhJ/New-Yok-Knicks.png",
         };
 
         function drawVisualization() {
@@ -189,7 +189,7 @@
                             }
                             else if (timeColumn.includes(column)) {
                                 tableBody +=
-                                    `<td>
+                                    `<td colspan="2">
                                         <span class="time">
                                             ${data.Vf[i].c[column].v}
                                         </span>
