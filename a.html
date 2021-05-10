@@ -218,7 +218,7 @@
                                 tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
                             }
                         } else {
-                            if(data.Vf[i].c[column].v == "#REF!"){
+                            if(data.Vf[i].c[column].v == "#REF!" || !(data.Vf[i].c[column].v)){
                                 tableBody += `<td></td>`;
                             }
                             else if (timeColumn.includes(column)) {
