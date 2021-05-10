@@ -182,7 +182,15 @@
                     if (data.Vf[i].c[column]) {
                         if (data.Vf[i].c[column].f) {
                             // add style to the cell
-                            if (scoreColumn.includes(column)) {
+                            if (timeColumn.includes(column)) {
+                                tableBody +=
+                                    `<td>
+                                    <span rowspan="2">
+                                    ${data.Vf[i].c[column].f}
+                                    </span>
+                                </td>`;
+                            }
+                            else if (scoreColumn.includes(column)) {
                                 tableBody +=
                                     `<td>
                                     <span class="score">
@@ -356,11 +364,11 @@
             border-bottom: 1px solid #fff;
           }
 
-        tr:nth-child(odd) td{
+        tr:nth-child(even) td{
             padding-top: 0px;
         }
 
-        tr:nth-child(even) td{
+        tr:nth-child(odd) td{
             padding-bottom: 0px;
         }
     </style>
