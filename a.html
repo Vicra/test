@@ -165,12 +165,12 @@
             let winChanceColumn= [4];
 
             console.log(data);
-            let htmlHeaders = '<thead><tr style="border-bottom:4px solid #fff;">';
-            for (let i = 0; i < data.cf.length; i++) {
-                htmlHeaders += `<th>${data.cf[i].label}</th>`;
-            }
-            htmlHeaders += '</tr></thead>'
-            $('#web-projections').append(htmlHeaders);
+            // let htmlHeaders = '<thead><tr style="border-bottom:4px solid #fff;">';
+            // for (let i = 0; i < data.cf.length; i++) {
+            //     htmlHeaders += `<th>${data.cf[i].label}</th>`;
+            // }
+            // htmlHeaders += '</tr></thead>'
+            // $('#web-projections').append(htmlHeaders);
 
             // populate the data
             let tableBody = '<tbody>';
@@ -352,7 +352,7 @@
             float:left;
           }
         
-          tr:nth-child(odd){
+          tr:nth-child(even){
             border-bottom: 1px solid #fff;
           }
 
