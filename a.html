@@ -221,6 +221,14 @@
                             if(data.Vf[i].c[column].v == "#REF!"){
                                 tableBody += `<td></td>`;
                             }
+                            else if (timeColumn.includes(column)) {
+                                tableBody +=
+                                    `<td rowspan="2">
+                                        <span class="time">
+                                            ${data.Vf[i].c[column].v}
+                                        </span>
+                                    </td>`;
+                            }
                             else if (scoreColumn.includes(column)) {
                                 tableBody +=
                                     `<td>
