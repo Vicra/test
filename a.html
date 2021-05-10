@@ -142,22 +142,12 @@
             //     , M "SCORE"
             //     , N "WIN CHANCE"
             //     `);
-            query.setQuery(`SELECT A, B, C, D, E, F, G, H, I, J, K, L, M, N , O label 
+            query.setQuery(`SELECT A, B, C, D, E label 
                 A "TIME"
                 , B "LOGO"
                 , C "TEAM"
                 , D "SCORE"
                 , E "WIN CHANCE"
-                , F "TIME"
-                , G "LOGO"
-                , H "TEAM"
-                , I "SCORE"
-                , J "WIN CHANCE"
-                , K "TIME"
-                , L "LOGO"
-                , M "TEAM"
-                , N "SCORE"
-                , O "WIN CHANCE"
                 `);
             query.send(handleQueryResponse);
         }
