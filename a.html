@@ -140,6 +140,9 @@
             let scoreColumn = [2,7,12];
             let winChanceColumn= [3,8,13];
 
+            let teamUpperRow = [1, 4];
+            let teamDownerRow = [2, 5];
+
             console.log(data);
             // let htmlHeaders = '<thead><tr style="border-bottom:4px solid #fff;">';
             // for (let i = 0; i < data.cf.length; i++) {
@@ -158,7 +161,26 @@
                     if (data.Vf[i].c[column]) {
                         if (data.Vf[i].c[column].f) {
                             // add style to the cell
-                            if (timeColumn.includes(column)) {
+                            if (teamColumn.includes(column)) {
+                                if(teamUpperRow.includes(i)){
+                                    tableBody +=
+                                        `<td class="upperTeamRow">
+                                            <span>
+                                            ${data.Vf[i].c[column].f}
+                                            </span>
+                                        </td>`;
+                                }
+                                else if(teamDownerRow.includes(i))
+                                {
+                                    tableBody +=
+                                        `<td class="downerTeamRow">
+                                            <span>
+                                            ${data.Vf[i].c[column].f}
+                                            </span>
+                                        </td>`;
+                                }
+                            }
+                            else if (timeColumn.includes(column)) {
                                 tableBody +=
                                     `<td>
                                         <span class="time">
@@ -199,7 +221,7 @@
                             }
                             else if (timeColumn.includes(column)) {
                                 tableBody +=
-                                    `<td colspan="2">
+                                    `<td colspan="2" class="timeCell">
                                         <span class="time">
                                             ${data.Vf[i].c[column].v}
                                         </span>
@@ -379,13 +401,25 @@
             color: darkgrey;
         }
 
-        tr:nth-child(even) td{
+        .timeCell{
+            padding-bottom: 0px;
+        }
+
+        .upperTeamRow{
+            padding-bottom: 0px;
+        }
+
+        .downerTeamRow{
+            padding-top: 0px;
+        }
+
+        /* tr:nth-child(even) td{
             padding-top: 0px;
         }
 
         tr:nth-child(odd) td{
             padding-bottom: 0px;
-        }
+        } */
     </style>
 </head>
 
