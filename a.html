@@ -347,10 +347,18 @@
 
                         if(!teamColumn.includes(column)){
                             if(scoreColumn.includes(column)){
-                                tableBody += `<td class="time">SCORE</td>`;
+                                tableBody += 
+                                    `<td class="timeCell">
+                                        <span class="time">SCORE</span>
+                                    </td>`;
                             }
                             else if(winChanceColumn.includes(column)){
-                                tableBody += `<td class="time">WIN CHANCE</td>`;
+                                tableBody += 
+                                    `<td class="timeCell">
+                                        <span class="time">
+                                            WIN CHANCE
+                                        </span>
+                                    </td>`;
                             }
                             else{
                                 tableBody += `<td></td>`;
