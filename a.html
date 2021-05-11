@@ -344,13 +344,13 @@
                     else {
 
                         if(!teamColumn.includes(column)){
-                            if(scoreColumn.includes(column)){
+                            if(scoreColumn.includes(column) && data.Vf[i].c[column]){
                                 tableBody += 
                                     `<td class="timeCell">
                                         <span class="time">SCORE</span>
                                     </td>`;
                             }
-                            else if(winChanceColumn.includes(column)){
+                            else if(winChanceColumn.includes(column) && data.Vf[i].c[column]){
                                 tableBody += 
                                     `<td class="timeCell">
                                         <span class="time" style="width:10px; display:block; padding-bottom:7px;">
