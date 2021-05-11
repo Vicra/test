@@ -344,8 +344,18 @@
                         
                     }
                     else {
+
                         if(!teamColumn.includes(column)){
-                            tableBody += `<td></td>`;
+                            if(scoreColumn.includes(column)){
+                                tableBody += `<td class="time">SCORE</td>`;
+                            }
+                            else if(winChanceColumn.includes(column)){
+                                tableBody += `<td class="time">WIN CHANCE</td>`;
+                            }
+                            else{
+                                tableBody += `<td></td>`;
+                            }
+                            
                         }
                     }
                 }
@@ -486,6 +496,8 @@
 
         .timeCell{
             padding-bottom: 0px;
+            padding-left: 15px;
+            padding-top: 60px;
         }
 
         .upperTeamRow{
