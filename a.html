@@ -261,7 +261,7 @@
                                 else if(teamDownerRow.includes(i))
                                 {
                                     tableBody +=
-                                        `<td class="downerTeamRow">
+                                        `<td class="downerTeamRow" style="border-bottom: 4px solid #fff;">
                                             <span>
                                             ${data.Vf[i].c[column].v}
                                             </span>
@@ -288,7 +288,7 @@
                                 else if(teamDownerRow.includes(i))
                                 {
                                     tableBody +=
-                                    `<td class="downerTeamRow">
+                                    `<td class="downerTeamRow" style="border-bottom: 4px solid #fff;">
                                         <span class="score">
                                         ${data.Vf[i].c[column].v}
                                         </span>
@@ -319,16 +319,16 @@
                     else if(timeColumn.includes(column)){
                         if(teamUpperRow.includes(i)){
                             tableBody += 
-                                `<td style="float:right; padding-bottom:0px;">
-                                    <img src="${imageHashMap[data.Vf[i].c[column+1].v]}">
+                                `<td padding-bottom:0px;">
+                                    <img style="float:right; src="${imageHashMap[data.Vf[i].c[column+1].v]}">
                                     </img>
                                 </td>`;
                         }
                         else if(teamDownerRow.includes(i))
                         {
                             tableBody += 
-                                `<td style="float:right; padding-top:0px;">
-                                    <img src="${imageHashMap[data.Vf[i].c[column+1].v]}">
+                                `<td style="padding-top:0px;border-bottom: 4px solid #fff;">
+                                    <img style="float:right;" src="${imageHashMap[data.Vf[i].c[column+1].v]}">
                                     </img>
                                 </td>`;
                         }
@@ -493,7 +493,6 @@
         .winChance {
             background-color: green;
             padding: 5px 15px;
-            width:60%;
             float:left;
         }
 
