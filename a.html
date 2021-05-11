@@ -250,8 +250,6 @@
                                     </td>`;
                             }
                             else if (teamColumn.includes(column)) {
-                                console.log("column",column);
-                                console.log("i",i);
                                 if(teamUpperRow.includes(i)){
                                     tableBody +=
                                         `<td class="upperTeamRow">
@@ -361,6 +359,8 @@
                                     </td>`;
                             }
                             else{
+                                console.log("column",column);
+                                console.log("i",i);
                                 tableBody += `<td style="width:20px;"></td>`;
                             }
                             
