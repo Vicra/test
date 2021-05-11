@@ -216,7 +216,18 @@
                                 tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
                             }
                         } else {
-                            if (teamColumn.includes(column)) {
+                            if(data.Vf[i].c[column].v == "#REF!" || !(data.Vf[i].c[column].v)){
+                                tableBody += `<td></td>`;
+                            }
+                            else if (timeColumn.includes(column)) {
+                                tableBody +=
+                                    `<td colspan="2" class="timeCell">
+                                        <span class="time">
+                                            ${data.Vf[i].c[column].v}
+                                        </span>
+                                    </td>`;
+                            }
+                            else if (teamColumn.includes(column)) {
                                 if(teamUpperRow.includes(i)){
                                     tableBody +=
                                         `<td class="upperTeamRow">
@@ -234,17 +245,6 @@
                                             </span>
                                         </td>`;
                                 }
-                            }
-                            else if(data.Vf[i].c[column].v == "#REF!" || !(data.Vf[i].c[column].v)){
-                                tableBody += `<td></td>`;
-                            }
-                            else if (timeColumn.includes(column)) {
-                                tableBody +=
-                                    `<td colspan="2" class="timeCell">
-                                        <span class="time">
-                                            ${data.Vf[i].c[column].v}
-                                        </span>
-                                    </td>`;
                             }
                             else if (scoreColumn.includes(column)) {
                                 tableBody +=
