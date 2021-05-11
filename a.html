@@ -317,21 +317,15 @@
                         }
                     }
                     else if(timeColumn.includes(column)){
-                        if(teamUpperRow.includes(i)){
-                            console.log("teamUpperRow");
-                            console.log("column",column);
-                            console.log("i",i);
+                        if(teamUpperRow.includes(i) && data.Vf[i].c[column+1]){ 
                             tableBody += 
                                 `<td padding-bottom:0px;">
                                     <img style="float:right; src="${imageHashMap[data.Vf[i].c[column+1].v]}">
                                     </img>
                                 </td>`;
                         }
-                        else if(teamDownerRow.includes(i))
+                        else if(teamDownerRow.includes(i) && data.Vf[i].c[column+1] )
                         {
-                            console.log("teamDownerRow");
-                            console.log("column",column);
-                            console.log("i",i);
                             tableBody += 
                                 `<td style="padding-top:0px;border-bottom: 4px solid #fff;">
                                     <img style="float:right;" src="${imageHashMap[data.Vf[i].c[column+1].v]}">
