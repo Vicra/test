@@ -71,7 +71,7 @@
             "Houston": "https://i.ibb.co/RNkbMSN/Houston-Rockets.png",
             "Indiana": "https://i.ibb.co/d5PBsHF/Indiana-Pacers.png",
             "LA Clippers": "https://i.ibb.co/P4ztcQ0/LA-Clippers.png",
-            "Los Angeles": "https://i.ibb.co/TkZG0LB/Los-Angeles-Lakers.png",
+            "LA Lakers": "https://i.ibb.co/TkZG0LB/Los-Angeles-Lakers.png",
             "Memphis": "https://i.ibb.co/yBDTVbY/Memphis-Grizzlies.png",
             "Miami": "https://i.ibb.co/4pydWKG/Miami-Heat.png",
             "Milwaukee": "https://i.ibb.co/j6dwqdy/Milwuakee-Bucks.png",
@@ -138,7 +138,7 @@
             let timeColumn = [0,5,10];
             let teamColumn = [1,6,11];
             let scoreColumn = [2,7,12];
-            let winChanceColumn= [3,8,13];
+            let winChanceColumn = [3,8,13];
 
             let teamUpperRow = [3, 6, 9, 12];
             let teamDownerRow = [4, 7, 10, 13];
@@ -319,8 +319,8 @@
                     else if(timeColumn.includes(column)){
                         if(teamUpperRow.includes(i) && data.Vf[i].c[column+1]){ 
                             tableBody += 
-                                `<td padding-bottom:0px;">
-                                    <img style="float:right; src="${imageHashMap[data.Vf[i].c[column+1].v]}">
+                                `<td style="padding-bottom:0px;">
+                                    <img style="float:right;" src="${imageHashMap[data.Vf[i].c[column+1].v]}">
                                     </img>
                                 </td>`;
                         }
@@ -336,7 +336,7 @@
                             tableBody += 
                                 `<td>
                                     <img src="">
-                                    </img>
+                                       </img>
                                 </td>`;
                         }
                         
