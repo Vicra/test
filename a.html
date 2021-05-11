@@ -318,6 +318,9 @@
                     }
                     else if(timeColumn.includes(column)){
                         if(teamUpperRow.includes(i)){
+                            console.log("teamUpperRow");
+                            console.log("column",column);
+                            console.log("i",i);
                             tableBody += 
                                 `<td padding-bottom:0px;">
                                     <img style="float:right; src="${imageHashMap[data.Vf[i].c[column+1].v]}">
@@ -326,6 +329,9 @@
                         }
                         else if(teamDownerRow.includes(i))
                         {
+                            console.log("teamDownerRow");
+                            console.log("column",column);
+                            console.log("i",i);
                             tableBody += 
                                 `<td style="padding-top:0px;border-bottom: 4px solid #fff;">
                                     <img style="float:right;" src="${imageHashMap[data.Vf[i].c[column+1].v]}">
@@ -359,8 +365,6 @@
                                     </td>`;
                             }
                             else{
-                                console.log("column",column);
-                                console.log("i",i);
                                 tableBody += `<td style="width:5%;max-width:45px"></td>`;
                             }
                             
