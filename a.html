@@ -189,12 +189,24 @@
                                     </td>`;
                             }
                             else if (scoreColumn.includes(column)) {
-                                tableBody +=
-                                    `<td>
-                                    <span class="score">
-                                    ${data.Vf[i].c[column].f}
-                                    </span>
-                                </td>`;
+                                if(teamUpperRow.includes(i)){
+                                    tableBody +=
+                                    `<td class="upperTeamRow">
+                                        <span class="score">
+                                        ${data.Vf[i].c[column].f}
+                                        </span>
+                                    </td>`;
+                                }
+                                else if(teamDownerRow.includes(i))
+                                {
+                                    tableBody +=
+                                    `<td class="downerTeamRow">
+                                        <span class="score">
+                                        ${data.Vf[i].c[column].f}
+                                        </span>
+                                    </td>`;
+                                }
+                                
                             } else if (winChanceColumn.includes(column)) {
                                 let backgroundColor = "";
 
@@ -205,13 +217,23 @@
                                         break;
                                     }
                                 }
-
-                                tableBody +=
-                                    `<td>
-                                    <span class="winChance" style="background-color:${backgroundColor};">
-                                    ${data.Vf[i].c[column].f}
-                                    </span>
-                                </td>`;
+                                if(teamUpperRow.includes(i)){
+                                    tableBody +=
+                                    `<td class="upperTeamRow">
+                                        <span class="winChance" style="background-color:${backgroundColor};">
+                                        ${data.Vf[i].c[column].f}
+                                        </span>
+                                    </td>`;
+                                }
+                                else if(teamDownerRow.includes(i))
+                                {
+                                    tableBody +=
+                                    `<td class="downerTeamRow">
+                                        <span class="winChance" style="background-color:${backgroundColor};">
+                                        ${data.Vf[i].c[column].f}
+                                        </span>
+                                    </td>`;
+                                }
                             } else {
                                 tableBody += `<td>${data.Vf[i].c[column].f}</td>`;
                             }
@@ -257,12 +279,23 @@
                                 }
                             }
                             else if (scoreColumn.includes(column)) {
-                                tableBody +=
-                                    `<td>
-                                    <span class="score">
-                                    ${data.Vf[i].c[column].v}
-                                    </span>
-                                </td>`;
+                                if(teamUpperRow.includes(i)){
+                                    tableBody +=
+                                    `<td class="upperTeamRow">
+                                        <span class="score">
+                                        ${data.Vf[i].c[column].v}
+                                        </span>
+                                    </td>`;
+                                }
+                                else if(teamDownerRow.includes(i))
+                                {
+                                    tableBody +=
+                                    `<td class="downerTeamRow">
+                                        <span class="score">
+                                        ${data.Vf[i].c[column].v}
+                                        </span>
+                                    </td>`;
+                                }
                             } else if (winChanceColumn.includes(column)) {
                                 let backgroundColor = "";
 
