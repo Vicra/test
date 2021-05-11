@@ -164,7 +164,7 @@
                             if (teamColumn.includes(column)) {
                                 if(teamUpperRow.includes(i)){
                                     tableBody +=
-                                        `<td class="upperTeamRow">
+                                        `<td class="upperTeamRow teamCell">
                                             <span>
                                             ${data.Vf[i].c[column].f}
                                             </span>
@@ -173,7 +173,7 @@
                                 else if(teamDownerRow.includes(i))
                                 {
                                     tableBody +=
-                                        `<td class="downerTeamRow" style="border-bottom: 4px solid #fff;">
+                                        `<td class="downerTeamRow teamCell" style="border-bottom: 4px solid #fff;">
                                             <span>
                                             ${data.Vf[i].c[column].f}
                                             </span>
@@ -252,7 +252,7 @@
                             else if (teamColumn.includes(column)) {
                                 if(teamUpperRow.includes(i)){
                                     tableBody +=
-                                        `<td class="upperTeamRow">
+                                        `<td class="upperTeamRow teamCell">
                                             <span>
                                             ${data.Vf[i].c[column].v}
                                             </span>
@@ -376,8 +376,13 @@
 
     <style type="text/css">
         .imageCell{
-            width:20px;
-            max-width: 25px;
+            width: 30px;
+            max-width: 30px;
+        }
+
+        .teamCell{
+            width: 100px;
+            max-width: 100px;
         }
 
         img {
