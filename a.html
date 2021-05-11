@@ -319,11 +319,29 @@
                         }
                     }
                     else if(timeColumn.includes(column)){
-                        tableBody += 
-                        `<td>
-                        <img src="${imageHashMap[data.Vf[i].c[column+1].v]}">
-                        </img>
-                        </td>`;
+                        if(teamUpperRow.includes(i)){
+                            tableBody += 
+                                `<td style="float:right; padding-bottom:0px;">
+                                    <img src="${imageHashMap[data.Vf[i].c[column+1].v]}">
+                                    </img>
+                                </td>`;
+                        }
+                        else if(teamDownerRow.includes(i))
+                        {
+                            tableBody += 
+                                `<td style="float:right; padding-top:0px;">
+                                    <img src="${imageHashMap[data.Vf[i].c[column+1].v]}">
+                                    </img>
+                                </td>`;
+                        }
+                        else{
+                            tableBody += 
+                                `<td>
+                                    <img src="${imageHashMap[data.Vf[i].c[column+1].v]}">
+                                    </img>
+                                </td>`;
+                        }
+                        
                     }
                     else {
                         tableBody += `<td></td>`;
