@@ -319,7 +319,7 @@
                     else if(timeColumn.includes(column)){
                         if(teamUpperRow.includes(i) && data.Vf[i].c[column+1]){ 
                             tableBody += 
-                                `<td style="padding-bottom:0px;">
+                                `<td style="padding-bottom:0px;" class="imageCell">
                                     <img style="float:right;" src="${imageHashMap[data.Vf[i].c[column+1].v]}">
                                     </img>
                                 </td>`;
@@ -327,7 +327,7 @@
                         else if(teamDownerRow.includes(i) && data.Vf[i].c[column+1] )
                         {
                             tableBody += 
-                                `<td style="padding-top:0px;border-bottom: 4px solid #fff;">
+                                `<td style="padding-top:0px;border-bottom: 4px solid #fff;" class="imageCell">
                                     <img style="float:right;" src="${imageHashMap[data.Vf[i].c[column+1].v]}">
                                     </img>
                                 </td>`;
@@ -336,7 +336,7 @@
                             tableBody += 
                                 `<td>
                                     <img src="">
-                                       </img>
+                                    </img>
                                 </td>`;
                         }
                         
@@ -375,6 +375,11 @@
     </script>
 
     <style type="text/css">
+        .imageCell{
+            width:20px;
+            max-width: 25px;
+        }
+
         img {
             width: 20px;
         }
