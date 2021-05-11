@@ -227,24 +227,22 @@
                                         </span>
                                     </td>`;
                             }
-                            else if (teamColumn.includes(column)) {
-                                if(teamUpperRow.includes(i)){
-                                    tableBody +=
-                                        `<td class="upperTeamRow">
-                                            <span>
-                                            ${data.Vf[i].c[column].v}
-                                            </span>
-                                        </td>`;
-                                }
-                                else if(teamDownerRow.includes(i))
-                                {
-                                    tableBody +=
-                                        `<td class="downerTeamRow">
-                                            <span>
-                                            ${data.Vf[i].c[column].v}
-                                            </span>
-                                        </td>`;
-                                }
+                            else if(teamUpperRow.includes(i) && teamColumn.includes(column)){
+                                tableBody +=
+                                    `<td class="upperTeamRow">
+                                        <span>
+                                        ${data.Vf[i].c[column].v}
+                                        </span>
+                                    </td>`;
+                            }
+                            else if(teamDownerRow.includes(i) && teamColumn.includes(column))
+                            {
+                                tableBody +=
+                                    `<td class="downerTeamRow">
+                                        <span>
+                                        ${data.Vf[i].c[column].v}
+                                        </span>
+                                    </td>`;
                             }
                             else if (scoreColumn.includes(column)) {
                                 tableBody +=
