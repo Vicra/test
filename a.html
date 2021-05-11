@@ -344,7 +344,9 @@
                         
                     }
                     else {
-                        tableBody += `<td></td>`;
+                        if(!teamColumn.includes(column)){
+                            tableBody += `<td></td>`;
+                        }
                     }
                 }
                 tableBody += '</tr>';
